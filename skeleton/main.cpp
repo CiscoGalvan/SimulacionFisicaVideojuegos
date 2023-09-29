@@ -9,12 +9,14 @@
 #include "callbacks.hpp"
 #include "Particle.h"
 #include <iostream>
+#include <list>
 
 std::string display_text = "This is a test";
 
 
 using namespace physx;
 
+const double DAMPING = 0.998;
 PxDefaultAllocator		gAllocator;
 PxDefaultErrorCallback	gErrorCallback;
 
@@ -26,8 +28,7 @@ PxMaterial*				gMaterial	= NULL;
 
 PxPvd*                  gPvd        = NULL;
 
-
-Particle* particle = NULL;
+std::list<Particle*>v;
 PxDefaultCpuDispatcher*	gDispatcher = NULL;
 PxScene*				gScene      = NULL;
 ContactReportCallback gContactReportCallback;
@@ -60,11 +61,7 @@ void initPhysics(bool interactive)
 
 
 	
-    particle = new Particle(physx::PxTransform(0, 0, 0), 1);
-	particle->getRenderItem()->color = Vector4(1, 0.5, 0, 1);
-	particle->getRenderItem()->shape = CreateShape(physx::PxSphereGeometry(2));
-	particle->getRenderItem()->transform = particle->getPos();
-	RegisterRenderItem(particle->getRenderItem());
+	
 }
 
 
@@ -75,7 +72,74 @@ void stepPhysics(bool interactive, double t)
 {
 	PX_UNUSED(interactive);
 
-	particle->integrate(t);
+
+	//for (auto it = v.begin(); it != v.end(); ++it)
+	//{
+	//	if (v.empty())return;
+
+	//	
+	//	physx::PxTransform* trans = (*it)->getPos();
+
+	//	std::cout << trans->p.y<<std::endl;
+	//	(*it)->verticalShoot(t);
+	//	if (trans->p.y < 50)
+	//	{
+	//		(*it)->setDestroy();
+	//	}
+	//	
+	///*	auto e = rewards.begin();
+	//	while (e != rewards.end())
+	//	{
+	//		auto c = e;
+	//		++e;
+	//		deleteReward(*c);
+
+	//		delete (rewardToDelete);
+	//rewards.remove(rewardToDelete);
+	//	}*/
+
+
+
+	//	/*
+	//auto e = rewards.begin();
+	//while (!nextLevelBool && e != rewards.end())
+	//{
+	//	auto c = e;
+	//	++e;
+	//	(*c)->update();
+
+	//}*/
+	//	if ((*it)->getDestroy())
+	//	{
+	//		auto c = it;
+	//		if(it!=v.end())
+	//		{
+	//			++it;
+	//		}
+	//		
+	//		delete *c;
+	//		v.remove(*c);	
+	//	}
+
+	//
+	//}
+	//
+	auto it = v.begin();
+	while (it != v.end())
+	{
+		auto aux = it;
+		++aux;
+		physx::PxTransform* trans = (*it)->getPos();
+		if (trans->p.y < 20)
+		{
+			delete* it; v.remove(*it);
+		}
+		else
+		{
+			(*it)->integrate(t);
+		}
+		it = aux;
+	}
 	gScene->simulate(t);
 	gScene->fetchResults(true);
 }
@@ -94,9 +158,17 @@ void cleanupPhysics(bool interactive)
 	PxPvdTransport* transport = gPvd->getTransport();
 	gPvd->release();
 	transport->release();
-	delete particle;
-	gFoundation->release();
+	auto it = v.begin();
+	while (it != v.end())
+	{
+		auto aux = it;
+		++aux;	
+		delete* it; v.remove(*it);
+		it = aux;
 	}
+	
+	gFoundation->release();
+}
 
 // Function called when a key is pressed
 void keyPress(unsigned char key, const PxTransform& camera)
@@ -105,8 +177,19 @@ void keyPress(unsigned char key, const PxTransform& camera)
 
 	switch(toupper(key))
 	{
-	//case 'B': break;
-	//case ' ':	break;
+	case 'R':
+	{	Camera* cam = GetCamera();
+		Particle* particle;
+		float masa = 1;
+		particle = new Particle(cam->getTransform(), cam->getDir() * 100, Vector3(0,-9.8,0),masa, DAMPING);
+		particle->getRenderItem()->color = Vector4(1, 0.5, 0, 1);
+		particle->getRenderItem()->shape = CreateShape(physx::PxSphereGeometry(0.3));
+		particle->getRenderItem()->transform = particle->getPos();
+		RegisterRenderItem(particle->getRenderItem());
+		v.push_back(particle);
+	}
+		
+		break;
 	case ' ':
 	{
 		break;

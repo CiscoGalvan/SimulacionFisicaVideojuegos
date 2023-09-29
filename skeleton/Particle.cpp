@@ -1,19 +1,31 @@
 #include "Particle.h"
-Particle::Particle(physx::PxTransform pos,int vel)
+Particle::Particle(physx::PxTransform pos, Vector3 vel,Vector3 acel,float masa,float damping)
 {
 	item = new RenderItem();
-	dir = Vector3(1, 0, 0);
+	this->vel = vel;
 	this->pos = pos;
-	velocity = vel;
+	this->acel = acel;
+	this->damping = damping;
+	this->masa = masa;
 }
 
 Particle::~Particle()
 {
 	DeregisterRenderItem(item);
+	delete item;
 }
 
 void Particle::integrate(double t)
 {
-	pos.p += physx::PxVec3(dir.x, dir.y, dir.z) * velocity * t ;
-	
+	//MRUA
+	vel += acel * t;
+	vel *= pow(damping,t);
+	pos.p += vel * t ;
+}
+
+void Particle::verticalShoot(double t)
+{
+	vel += acel * t;
+	vel *= pow(damping, t);
+	pos.p += vel * t;
 }
