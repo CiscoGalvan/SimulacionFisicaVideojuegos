@@ -181,15 +181,29 @@ void keyPress(unsigned char key, const PxTransform& camera)
 	{	Camera* cam = GetCamera();
 		Particle* particle;
 		float masa = 1;
-		particle = new Particle(cam->getTransform(), cam->getDir() * 100, Vector3(0,-9.8,0),masa, DAMPING);
+		particle = new Particle(cam->getTransform(), cam->getDir() * 25, Vector3(0,-9.8,0),masa, DAMPING);
 		particle->getRenderItem()->color = Vector4(1, 0.5, 0, 1);
 		particle->getRenderItem()->shape = CreateShape(physx::PxSphereGeometry(0.3));
 		particle->getRenderItem()->transform = particle->getPos();
 		RegisterRenderItem(particle->getRenderItem());
 		v.push_back(particle);
+		break;
+	}
+
+	case 'T':
+	{	Camera* cam = GetCamera();
+		Particle* particle;
+		float masa = 1;
+		particle = new Particle(cam->getTransform(), cam->getDir() * 10, Vector3(0, 3, 0), masa, DAMPING);
+		particle->getRenderItem()->color = Vector4(1, 0.5, 0, 1);
+		particle->getRenderItem()->shape = CreateShape(physx::PxSphereGeometry(0.3));
+		particle->getRenderItem()->transform = particle->getPos();
+		RegisterRenderItem(particle->getRenderItem());
+		v.push_back(particle);
+	break;
 	}
 		
-		break;
+		
 	case ' ':
 	{
 		break;
