@@ -111,6 +111,11 @@ void keyPress(unsigned char key, const PxTransform& camera)
 		pS->shootParticle(10, 0.2, 2,Vector3(0, 3.0, 0));
 		break;
 	}	
+
+	case 'Y':
+	{
+		pS->shootFirework(250, 0.2, 2, Vector3(0, -9.8, 0));
+	}
 	default:
 		break;
 	}

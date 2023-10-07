@@ -27,16 +27,11 @@ void ParticleSystem::update(double t)
 		++aux;
 		if ((*ai)->getStatus())
 		{
-
-			
 			string name = "PAPA";
 			physx::PxTransform p (Vector3((*ai)->getPos()->p.x, (*ai)->getPos()->p.y, (*ai)->getPos()->p.z));
 			Particle* papa = new Particle( p, Vector3(0, 0, 0), Vector3(0, 0, 0), 1, 1000, DAMPING);
 			addGenerator(name, papa, 1000, 0.001);
-			delete* ai; fireworks.remove(*ai);
-
-
-			
+			delete* ai; fireworks.remove(*ai);	
 		}
 		else
 		{
@@ -87,6 +82,19 @@ void ParticleSystem::shootParticle(float vel, float radius,float liveTime ,Vecto
 	particle->getRenderItem()->transform = particle->getPos();
 	RegisterRenderItem(particle->getRenderItem());
 	particles.push_back(particle);
+}
+
+void ParticleSystem::shootFirework(float vel, float radius, float liveTime, Vector3 gravity)
+{
+	Camera* cam = GetCamera();
+	Firework* firework;
+	float masa = 1;
+	firework = new Firework(cam->getTransform(), cam->getDir() * vel, gravity, masa, liveTime,DAMPING,200,1000);
+	firework->getRenderItem()->color = Vector4(1, 0.5, 0, 1);
+	firework->getRenderItem()->shape = CreateShape(physx::PxSphereGeometry(radius));
+	firework->getRenderItem()->transform = firework->getPos();
+	RegisterRenderItem(firework->getRenderItem());
+	fireworks.push_back(firework);
 }
 
 void ParticleSystem::addGenerator(std::string name, Particle* particle, int numParticles, float frecuency)

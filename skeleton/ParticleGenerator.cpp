@@ -23,6 +23,19 @@ void ParticleGenerator::update(double t)
 		float vY = rand() % 20;
 		float vZ = rand() % 20;
 
+
+		
+		int numero_aleatorio1 = std::rand() % 10001;
+		double colorX = static_cast<double>(numero_aleatorio1) / 100.0;
+			
+		int numero_aleatorio2 = std::rand() % 10001;
+		double colorY = static_cast<double>(numero_aleatorio2) / 100.0;
+			
+		int numero_aleatorio3 = std::rand() % 10001;
+		double colorZ = static_cast<double>(numero_aleatorio3) / 100.0;
+
+		
+		
 		int randomValue1 = std::rand() % 2;
 		int result1 = (randomValue1 == 0) ? -1 : 1;
 
@@ -37,7 +50,7 @@ void ParticleGenerator::update(double t)
 		float masa = 1;
 		float liveTime = 3;
 		particle = new Particle(*emitter->getPos(), vel, Vector3(0, -9.8, 0), masa, liveTime, DAMPING);
-		particle->getRenderItem()->color = Vector4(1, 0.5, 0, 1);
+		particle->getRenderItem()->color = Vector4(colorX, colorY, colorZ, 1);
 		particle->getRenderItem()->shape = CreateShape(physx::PxSphereGeometry(0.3));
 		particle->getRenderItem()->transform = particle->getPos();
 		RegisterRenderItem(particle->getRenderItem());

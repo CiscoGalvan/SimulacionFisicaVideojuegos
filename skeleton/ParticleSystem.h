@@ -17,7 +17,7 @@ public:
 	void cleanupPhysics();
 	void addGenerator(string name, Particle* particle, int numParticles, float frecuency);
 	void shootParticle(float vel, float radius,float liveTime, Vector3 gravity);
-
+	void shootFirework(float vel, float radius, float liveTime, Vector3 gravity);
 
 	void addParticle(Particle* p) { particles.push_back(p); }
 
