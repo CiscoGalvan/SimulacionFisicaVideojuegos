@@ -1,5 +1,5 @@
 #include "Particle.h"
-Particle::Particle(physx::PxTransform pos, Vector3 vel,Vector3 acel,float masa,float damping)
+Particle::Particle(physx::PxTransform pos, Vector3 vel,Vector3 acel,float masa,float liveTime,float damping)
 {
 	item = new RenderItem();
 	this->vel = vel;
@@ -7,6 +7,8 @@ Particle::Particle(physx::PxTransform pos, Vector3 vel,Vector3 acel,float masa,f
 	this->acel = acel;
 	this->damping = damping;
 	this->masa = masa;
+	this->liveTime = liveTime;
+	
 }
 
 Particle::~Particle()
@@ -21,6 +23,8 @@ void Particle::integrate(double t)
 	vel += acel * t;
 	vel *= pow(damping,t);
 	pos.p += vel * t ;
+	this->timeAlive += t;
+	
 }
 
 void Particle::verticalShoot(double t)

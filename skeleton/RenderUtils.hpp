@@ -4,6 +4,9 @@
 #include "PxPhysicsAPI.h"
 #include "core.hpp"
 
+
+const double DAMPING = 0.998;
+
 class RenderItem;
 void RegisterRenderItem(const RenderItem* _item);
 void DeregisterRenderItem(const RenderItem* _item);
