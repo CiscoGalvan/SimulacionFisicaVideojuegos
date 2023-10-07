@@ -37,10 +37,3 @@ void Particle::integrate(double t)
 	this->timeAlive += t;
 	
 }
-
-void Particle::verticalShoot(double t)
-{
-	vel += acel * t;
-	vel *= pow(damping, t);
-	pos.p += vel * t;
-}

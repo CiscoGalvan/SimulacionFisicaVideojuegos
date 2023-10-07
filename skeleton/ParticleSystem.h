@@ -1,10 +1,12 @@
 #pragma once
 #include "ParticleGenerator.h"
+#include "Firework.h"
 using namespace std;
 class ParticleSystem
 {
 private:
 	list<Particle*> particles;
+	list<Firework*> fireworks;
 	list<ParticleGenerator* >generators;
 	Vector3 gravity;
 	float timeAlive = 0;
