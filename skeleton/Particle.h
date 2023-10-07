@@ -13,6 +13,7 @@ private:
 	float timeAlive = 0;
 	float liveTime = 0;
 public:
+	Particle();
 	Particle(physx::PxTransform  pos, Vector3 vel, Vector3 acel, float masa,float liveTime,float damping);
 	~Particle();
 	void integrate(double t);	

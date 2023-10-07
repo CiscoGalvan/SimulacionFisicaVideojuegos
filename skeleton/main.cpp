@@ -49,7 +49,10 @@ void initPhysics(bool interactive)
 
 	gMaterial = gPhysics->createMaterial(0.5f, 0.5f, 0.6f);
 
-	pS = new ParticleSystem(0.01);
+	pS = new ParticleSystem();
+	string name = "PAPA";
+	Particle* papa = new Particle(physx::PxTransform(Vector3(50, 50, 50)), Vector3(0, 0, 0), Vector3(0, 0, 0), 1, 10000, DAMPING);
+	pS->addGenerator(name, papa, 100000, 0.000001);
 
 	// For Solid Rigids +++++++++++++++++++++++++++++++++++++
 	PxSceneDesc sceneDesc(gPhysics->getTolerancesScale());

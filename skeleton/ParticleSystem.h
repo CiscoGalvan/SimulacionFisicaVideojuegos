@@ -4,17 +4,20 @@ using namespace std;
 class ParticleSystem
 {
 private:
-	list<Particle*> v;
+	list<Particle*> particles;
+	list<ParticleGenerator* >generators;
 	Vector3 gravity;
-	float nextRespawn = 0;
-	float lastRespawn = 0;
-	float frecuency;
+	float timeAlive = 0;
 public:
-	ParticleSystem(float frecuency);
+	ParticleSystem();
 	~ParticleSystem();
 	void update(double t);
 	void cleanupPhysics();
-
+	void addGenerator(string name, Particle* particle, int numParticles, float frecuency);
 	void shootParticle(float vel, float radius,float liveTime, Vector3 gravity);
+
+
+	void addParticle(Particle* p) { particles.push_back(p); }
+
 };
 

@@ -11,6 +11,17 @@ Particle::Particle(physx::PxTransform pos, Vector3 vel,Vector3 acel,float masa,f
 	
 }
 
+Particle::Particle()
+{
+	item = new RenderItem();
+	this->vel = Vector3(0,0,0);
+	this->pos = physx::PxTransform(Vector3(50,50,50));
+	this->acel = Vector3(0,0,0);
+	this->damping = DAMPING;
+	this->masa = 1;
+	this->liveTime = 1000000;
+}
+
 Particle::~Particle()
 {
 	DeregisterRenderItem(item);
