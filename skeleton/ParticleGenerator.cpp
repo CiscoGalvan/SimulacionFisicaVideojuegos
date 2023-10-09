@@ -58,7 +58,7 @@ void ParticleGenerator::update(double t)
 
 		nextRespawn += frecuency;
 		actualParticles++;
-		std::cout << actualParticles << std::endl;
+		
 	}
 	else
 	{
