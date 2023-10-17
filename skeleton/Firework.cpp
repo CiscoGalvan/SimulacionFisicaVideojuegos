@@ -1,6 +1,6 @@
 #include "Firework.h"
 #include "ParticleGenerator.h"
-Firework::Firework(physx::PxTransform  pos, Vector3 vel, Vector3 acel, float masa, float liveTime, float damping, float limit, float numParticles)
+Firework::Firework(physx::PxTransform  pos, Vector3 vel, Vector3 acel, float masa, float liveTime, float damping, float limit, float numParticles, bool gaussian)
 {
 	item = new RenderItem();
 	this->vel = vel;
@@ -9,7 +9,7 @@ Firework::Firework(physx::PxTransform  pos, Vector3 vel, Vector3 acel, float mas
 	this->damping = damping;
 	this->masa = masa;
 	this->liveTime = liveTime;
-
+	this->gaussianDistribution = gaussian;
 	this->limit = limit;
 	this->numParticles = numParticles;
 }
@@ -27,4 +27,9 @@ void Firework::integrate(double t)
 	{
 		explosion = true;
 	}
+}
+
+bool Firework::getGenerator()
+{
+	return gaussianDistribution;
 }

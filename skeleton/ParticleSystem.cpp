@@ -2,41 +2,69 @@
 ParticleSystem::ParticleSystem()
 {
 	gravity = Vector3(0, -9.8, 0);	
-	Firework* f = new Firework(physx::PxTransform(Vector3(50, 50, 50)), Vector3(0 ,150, 0), Vector3(0, -0.1, 0), 1, 100, DAMPING, 300, 1000);
-	f->getRenderItem()->color = Vector4(1, 0, 0, 1);
-	f->getRenderItem()->shape = CreateShape(physx::PxSphereGeometry(10));
-	f->getRenderItem()->transform = f->getPos();
-	RegisterRenderItem(f->getRenderItem());
-	fireworks.push_back(f);
+	
 }
 
 void ParticleSystem::update(double t)
 {
 	timeAlive += t;
-	
+	if (shot)delay--;
+
+	if(delay <= 0)
+	{
+		delay = 10;
+		shot = false;
+	}
+
+
 	for(auto it : generators)
+	{
+		it->update(t);
+	}
+	
+	for (auto it : GaussianGenerators)
 	{
 		it->update(t);
 	}
 	
 
 	auto ai = fireworks.begin();
-	while(ai!=fireworks.end())
+	while(  ai != fireworks.end())
 	{
+		cout << fireworks.size()<<endl;
 		auto aux = ai;
 		++aux;
-		if ((*ai)->getStatus())
+
+
+		physx::PxTransform* trans = (*ai)->getPos();
+		if (trans->p.y < 20 || (*ai)->getTimeAlive() >(*ai)->getDeathTime())
+		{
+			delete* ai; fireworks.remove(*ai);
+		}
+		else if ((*ai)->getStatus())
 		{
 			string name = "PAPA";
 			physx::PxTransform p (Vector3((*ai)->getPos()->p.x, (*ai)->getPos()->p.y, (*ai)->getPos()->p.z));
-			Particle* papa = new Particle( p, Vector3(0, 0, 0), Vector3(0, 0, 0), 1, 1000, DAMPING);
-			addGenerator(name, papa, 1000, 0.001);
+			
+			if(!(*ai)->getGenerator())
+			{
+				Particle* papa = new Particle(p, Vector3(0), Vector3(0, -3.0, 0), 1, 1000, DAMPING, false);
+				addGenerator(name, papa, 100, 0.001);
+			}
+			else
+			{
+				Particle* papa = new Particle(p, Vector3(0), Vector3(0, -3.0, 0), 1, 1000, DAMPING, true);
+				addGaussianGenerator(name, papa, 100, 0.001);
+			}
 			delete* ai; fireworks.remove(*ai);	
+			shot = true;
 		}
 		else
 		{
 			(*ai)->integrate(t);
 		}
+
+
 		ai = aux;
 
 	}
@@ -76,7 +104,7 @@ void ParticleSystem::shootParticle(float vel, float radius,float liveTime ,Vecto
 	Camera* cam = GetCamera();
 	Particle* particle;
 	float masa = 1;
-	particle = new Particle(cam->getTransform(), cam->getDir() * vel,gravity, masa,liveTime, DAMPING);
+	particle = new Particle(cam->getTransform(), cam->getDir() * vel,gravity, masa,liveTime, DAMPING,false);
 	particle->getRenderItem()->color = Vector4(1, 0.5, 0, 1);
 	particle->getRenderItem()->shape = CreateShape(physx::PxSphereGeometry(radius));
 	particle->getRenderItem()->transform = particle->getPos();
@@ -84,12 +112,12 @@ void ParticleSystem::shootParticle(float vel, float radius,float liveTime ,Vecto
 	particles.push_back(particle);
 }
 
-void ParticleSystem::shootFirework(float vel, float radius, float liveTime, Vector3 gravity)
+void ParticleSystem::shootFirework(float vel, float radius, float liveTime, Vector3 gravity,bool gaussian)
 {
 	Camera* cam = GetCamera();
 	Firework* firework;
 	float masa = 1;
-	firework = new Firework(cam->getTransform(), cam->getDir() * vel, gravity, masa, liveTime,DAMPING,200,1000);
+	firework = new Firework(cam->getTransform(), cam->getDir() * vel, gravity, masa, liveTime,DAMPING,200,1000,gaussian);
 	firework->getRenderItem()->color = Vector4(1, 0.5, 0, 1);
 	firework->getRenderItem()->shape = CreateShape(physx::PxSphereGeometry(radius));
 	firework->getRenderItem()->transform = firework->getPos();
@@ -99,6 +127,19 @@ void ParticleSystem::shootFirework(float vel, float radius, float liveTime, Vect
 
 void ParticleSystem::addGenerator(std::string name, Particle* particle, int numParticles, float frecuency)
 {
-	ParticleGenerator* pG = new ParticleGenerator(name,particle,numParticles,frecuency,this);
-	generators.push_back(pG);
+	if(shot==false)
+	{
+		ParticleGenerator* pG = new ParticleGenerator(name, particle, numParticles, frecuency, this);
+		generators.push_back(pG);
+	}
+	
+}
+
+void ParticleSystem::addGaussianGenerator(std::string name, Particle* particle, int numParticles, float frecuency)
+{
+	if (shot == false)
+	{
+	GaussianGenerator* pG = new GaussianGenerator(name, particle, numParticles, frecuency, this);
+	GaussianGenerators.push_back(pG);
+	}
 }

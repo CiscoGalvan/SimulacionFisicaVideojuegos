@@ -1,5 +1,6 @@
 #include "ParticleGenerator.h"
 #include "ParticleSystem.h"
+
 ParticleGenerator::ParticleGenerator(std::string name,Particle* emitter, int numParticles, float frecuency, ParticleSystem* pS)
 {
 	this->emitter = emitter;
@@ -19,23 +20,12 @@ void ParticleGenerator::update(double t)
 {
 	if (lastRespawn + frecuency > nextRespawn && numParticles> actualParticles)
 	{
-		float vX = rand() % 20;
-		float vY = rand() % 20;
-		float vZ = rand() % 20;
-
-
-		
-		int numero_aleatorio1 = std::rand() % 10001;
-		double colorX = static_cast<double>(numero_aleatorio1) / 100.0;
-			
-		int numero_aleatorio2 = std::rand() % 10001;
-		double colorY = static_cast<double>(numero_aleatorio2) / 100.0;
-			
-		int numero_aleatorio3 = std::rand() % 10001;
-		double colorZ = static_cast<double>(numero_aleatorio3) / 100.0;
-
+	
+		std::mt19937 gen(rd1());
 		
 		
+		std::mt19937 gen2(rd2());
+		 
 		int randomValue1 = std::rand() % 2;
 		int result1 = (randomValue1 == 0) ? -1 : 1;
 
@@ -46,11 +36,11 @@ void ParticleGenerator::update(double t)
 		int result3 = (randomValue3 == 0) ? -1 : 1;
 
 		Particle* particle;
-		Vector3 vel(float(rand() % 10 / 10.0) * vX * result1, float(rand() % 10 / 10.0) * vY * result2, float(rand() % 10 / 10.0) * vZ * result3);
+		Vector3 vel(randomVel(gen2) * result1, randomVel(gen2) * result2, randomVel(gen2) * result3);
 		float masa = 1;
 		float liveTime = 3;
-		particle = new Particle(*emitter->getPos(), vel, Vector3(0, -9.8, 0), masa, liveTime, DAMPING);
-		particle->getRenderItem()->color = Vector4(colorX, colorY, colorZ, 1);
+		particle = new Particle(*emitter->getPos(), vel, Vector3(0, -9.8, 0), masa, liveTime, DAMPING,false);
+		particle->getRenderItem()->color = Vector4(distribution(gen), distribution(gen), distribution(gen), 1);
 		particle->getRenderItem()->shape = CreateShape(physx::PxSphereGeometry(0.3));
 		particle->getRenderItem()->transform = particle->getPos();
 		RegisterRenderItem(particle->getRenderItem());
@@ -58,7 +48,6 @@ void ParticleGenerator::update(double t)
 
 		nextRespawn += frecuency;
 		actualParticles++;
-		
 	}
 	else
 	{

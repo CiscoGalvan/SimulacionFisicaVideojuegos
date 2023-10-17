@@ -1,5 +1,5 @@
 #include "Particle.h"
-Particle::Particle(physx::PxTransform pos, Vector3 vel,Vector3 acel,float masa,float liveTime,float damping)
+Particle::Particle(physx::PxTransform pos, Vector3 vel,Vector3 acel,float masa,float liveTime,float damping,bool gaussian)
 {
 	item = new RenderItem();
 	this->vel = vel;
@@ -8,7 +8,7 @@ Particle::Particle(physx::PxTransform pos, Vector3 vel,Vector3 acel,float masa,f
 	this->damping = damping;
 	this->masa = masa;
 	this->liveTime = liveTime;
-	
+	this->gaussianDistribution = gaussian;
 }
 
 Particle::Particle()

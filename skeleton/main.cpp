@@ -33,7 +33,7 @@ PxDefaultCpuDispatcher*	gDispatcher = NULL;
 PxScene*				gScene      = NULL;
 ContactReportCallback gContactReportCallback;
 
-
+bool shot = false;
 // Initialize physics engine
 void initPhysics(bool interactive)
 {
@@ -114,7 +114,11 @@ void keyPress(unsigned char key, const PxTransform& camera)
 
 	case 'Y':
 	{
-		pS->shootFirework(250, 0.2, 2, Vector3(0, -9.8, 0));
+		pS->shootFirework(250, 0.2, 2, Vector3(0, -9.8, 0),false);
+	}
+	case 'U':
+	{
+		pS->shootFirework(250, 0.2, 2, Vector3(0, -9.8, 0), true);
 	}
 	default:
 		break;

@@ -1,11 +1,22 @@
 #pragma once
 #include "Particle.h"
+#include <random>
 #include <list>
 
 class ParticleSystem;
 class ParticleGenerator
 {
 private:
+	
+	std::random_device rd1;
+	std::random_device rd2; 
+	std::uniform_real_distribution<double> distribution{ 0.0, 1.0 };
+	std::uniform_real_distribution<double> randomVel{ 0.0, 50.0 };
+
+	//random_Device rd;
+	// uniform_int_distribution;
+	
+protected:
 	std::string name;
 	Vector3 pos;
 	int numParticles;
@@ -17,10 +28,11 @@ private:
 	float lastRespawn = 0;
 	ParticleSystem* pS;
 
-	
 public:
+
+
 	ParticleGenerator(std::string name,Particle* emitter,int numParticles,float frecuency, ParticleSystem* pS);
-	~ParticleGenerator();
-	void update(double t);
+	virtual ~ParticleGenerator();
+    virtual void update(double t);
 };
 
