@@ -3,9 +3,9 @@
 class GaussianGenerator : public ParticleGenerator
 {
 private:
-	std::random_device rd1;
-	std::random_device rd2;
 	
+	std::uniform_int_distribution<int> side{ 0,1 };
+
 	std::default_random_engine generator;
 	std::normal_distribution<double>d{ 10,15 };
 public:
