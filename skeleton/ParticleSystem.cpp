@@ -31,7 +31,7 @@ void ParticleSystem::update(double t)
 	auto ai = fireworks.begin();
 	while(  ai != fireworks.end())
 	{
-		cout << fireworks.size()<<endl;
+	
 		auto aux = ai;
 		++aux;
 
@@ -43,16 +43,18 @@ void ParticleSystem::update(double t)
 		}
 		else if ((*ai)->getStatus())
 		{
-			string name = "PAPA";
+			
 			physx::PxTransform p (Vector3((*ai)->getPos()->p.x, (*ai)->getPos()->p.y, (*ai)->getPos()->p.z));
 			
 			if(!(*ai)->getGenerator())
 			{
+				string name = "UNIFORM";
 				Particle* papa = new Particle(p, Vector3(0), Vector3(0, -3.0, 0), 1, 1000, DAMPING, false);
 				addGenerator(name, papa, 100, 0.001);
 			}
 			else
 			{
+				string name = "GAUSS";
 				Particle* papa = new Particle(p, Vector3(0), Vector3(0, -3.0, 0), 1, 1000, DAMPING, true);
 				addGaussianGenerator(name, papa, 100, 0.001);
 			}
@@ -85,6 +87,8 @@ void ParticleSystem::update(double t)
 		}
 		it = aux;
 	}
+
+
 }
 
 void ParticleSystem::cleanupPhysics()
@@ -131,6 +135,7 @@ void ParticleSystem::addGenerator(std::string name, Particle* particle, int numP
 	{
 		ParticleGenerator* pG = new ParticleGenerator(name, particle, numParticles, frecuency, this);
 		generators.push_back(pG);
+		shot = true;
 	}
 	
 }
@@ -139,7 +144,8 @@ void ParticleSystem::addGaussianGenerator(std::string name, Particle* particle, 
 {
 	if (shot == false)
 	{
-	GaussianGenerator* pG = new GaussianGenerator(name, particle, numParticles, frecuency, this);
-	GaussianGenerators.push_back(pG);
+		GaussianGenerator* pG = new GaussianGenerator(name, particle, numParticles, frecuency, this);
+		GaussianGenerators.push_back(pG);
+		shot = true;
 	}
 }

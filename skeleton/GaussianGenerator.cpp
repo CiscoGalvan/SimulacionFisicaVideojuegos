@@ -11,19 +11,17 @@ void GaussianGenerator::update(double t)
 	if (lastRespawn + frecuency > nextRespawn && numParticles > actualParticles)
 	{
 
-		
-
-		/*int randomValue1 = std::rand() % 2;
+		int randomValue1 = std::rand() % 2;
 		int result1 = (randomValue1 == 0) ? -1 : 1;
 
 		int randomValue2 = std::rand() % 2;
 		int result2 = (randomValue2 == 0) ? -1 : 1;
 
 		int randomValue3 = std::rand() % 2;
-		int result3 = (randomValue3 == 0) ? -1 : 1;*/
+		int result3 = (randomValue3 == 0) ? -1 : 1;
 
 		Particle* particle;
-		Vector3 vel(d(generator) * side(generator), d(generator) * side(generator), d(generator) * side(generator));
+		Vector3 vel(d(generator) * result1, d(generator) * result2, d(generator) * result3);
 		float masa = 1;
 		float liveTime = 3;
 		particle = new Particle(*emitter->getPos(), vel, Vector3(0, -9.8, 0), masa, liveTime, DAMPING, true);
@@ -32,7 +30,6 @@ void GaussianGenerator::update(double t)
 		particle->getRenderItem()->transform = particle->getPos();
 		RegisterRenderItem(particle->getRenderItem());
 		pS->addParticle(particle);
-
 		nextRespawn += frecuency;
 		actualParticles++;
 	}
