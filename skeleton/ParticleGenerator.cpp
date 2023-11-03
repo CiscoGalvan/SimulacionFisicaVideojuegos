@@ -10,6 +10,10 @@ ParticleGenerator::ParticleGenerator(std::string name,Particle* emitter, int num
 	this->nextRespawn = frecuency;
 	this->pS = pS;
 	actualParticles = 0;
+
+
+	int randomValue = std::rand() % 2;
+    type = (randomValue == 0) ? -1 : 1;
 }
 
 ParticleGenerator::~ParticleGenerator()
@@ -18,8 +22,7 @@ ParticleGenerator::~ParticleGenerator()
 }
 void ParticleGenerator::update(double t)
 {
-	int randomValue = std::rand() % 2;
-	int type = (randomValue == 0) ? -1 : 1;
+	
 
 	if (lastRespawn + frecuency > nextRespawn && numParticles> actualParticles)
 	{
@@ -30,7 +33,7 @@ void ParticleGenerator::update(double t)
 		 
 		
 		
-		if(type == 0)
+		if(type == -1)
 		{
 			int randomValue1 = std::rand() % 2;
 			int result1 = (randomValue1 == 0) ? -1 : 1;

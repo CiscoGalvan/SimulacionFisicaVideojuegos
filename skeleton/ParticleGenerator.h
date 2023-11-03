@@ -13,7 +13,7 @@ private:
 	std::uniform_real_distribution<double> distribution{ 0.0, 1.0 };
 	std::uniform_real_distribution<double> randomVel{ 0.0, 50.0 };
 
-	
+	int type;
 protected:
 	std::string name;
 	Vector3 pos;
