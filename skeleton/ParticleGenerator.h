@@ -12,6 +12,7 @@ private:
 	std::random_device rd2; 
 	std::uniform_real_distribution<double> distribution{ 0.0, 1.0 };
 	std::uniform_real_distribution<double> randomVel{ 0.0, 50.0 };
+	std::uniform_real_distribution<double> randomVel2{ 0.0, 5.0 };
 
 	int type;
 protected:
@@ -29,7 +30,7 @@ protected:
 public:
 
 
-	ParticleGenerator(std::string name,Particle* emitter,int numParticles,float frecuency, ParticleSystem* pS);
+	ParticleGenerator(std::string name,Particle* emitter,int numParticles,float frecuency,int type, ParticleSystem* pS);
 	virtual ~ParticleGenerator();
 
 	bool finished() { return actualParticles >= numParticles; }

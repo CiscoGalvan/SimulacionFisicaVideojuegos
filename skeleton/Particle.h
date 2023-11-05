@@ -7,7 +7,7 @@ protected:
 	Vector3 vel;
 	physx::PxTransform pos;
 	RenderItem* item;
-	Vector3 acel;
+	Vector3 force;
 	float damping; float masa;
 	bool destroy = false;
 
@@ -24,5 +24,9 @@ public:
 	inline physx::PxTransform* getPos() { return &pos; }
 	inline float getTimeAlive() { return timeAlive; }
 	inline float getDeathTime() { return liveTime; }
+	inline void clearForce() { force *= 0; }
+	inline void addForce(const Vector3& f) { force += f; }
+	inline float getMass() { return masa; }
+	inline Vector3 getVel() { return vel; }
 };
 

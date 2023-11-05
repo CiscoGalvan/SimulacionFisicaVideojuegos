@@ -1,7 +1,9 @@
 #include "ParticleSystem.h"
 ParticleSystem::ParticleSystem()
 {
-	gravity = Vector3(0, -9.8, 0);	
+	gF = new GravityForceGenerator(Vector3(0, -9.8, 0));	
+	pfR = new ParticleForceRegistry();
+	fG.push_back(gF);
 	
 }
 
@@ -16,17 +18,17 @@ void ParticleSystem::update(double t)
 		shot = false;
 	}
 
+	if (!pfR->empty()) 
+	{
+		pfR->updateForces(t);
+
+	}
+	
 
 	for(auto it : generators)
 	{
 		it->update(t);
 	}
-	
-	for (auto it : GaussianGenerators)
-	{
-		it->update(t);
-	}
-	
 
 	auto ai = fireworks.begin();
 	while(  ai != fireworks.end())
@@ -50,7 +52,7 @@ void ParticleSystem::update(double t)
 			{
 				string name = "UNIFORM";
 				Particle* papa = new Particle(p, Vector3(0), Vector3(0, -3.0, 0), 1, 1000, DAMPING, false);
-				addGenerator(name, papa, 100, 0.001);
+				addGenerator(name, papa, 100, 0.001,-1);
 			}
 			else
 			{
@@ -65,10 +67,7 @@ void ParticleSystem::update(double t)
 		{
 			(*ai)->integrate(t);
 		}
-
-
 		ai = aux;
-
 	}
 
 	auto it = particles.begin();
@@ -103,37 +102,43 @@ void ParticleSystem::cleanupPhysics()
 	}
 }
 
-void ParticleSystem::shootParticle(float vel, float radius,float liveTime ,Vector3 gravity)
+void ParticleSystem::shootParticle(float vel, float radius,float liveTime, float masa,Vector3 gravity)
 {
 	Camera* cam = GetCamera();
 	Particle* particle;
-	float masa = 1;
 	particle = new Particle(cam->getTransform(), cam->getDir() * vel,gravity, masa,liveTime, DAMPING,false);
 	particle->getRenderItem()->color = Vector4(1, 0.5, 0, 1);
 	particle->getRenderItem()->shape = CreateShape(physx::PxSphereGeometry(radius));
 	particle->getRenderItem()->transform = particle->getPos();
 	RegisterRenderItem(particle->getRenderItem());
+	pfR->addRegistry(new GravityForceGenerator(gravity), particle);
 	particles.push_back(particle);
 }
 
-void ParticleSystem::shootFirework(float vel, float radius, float liveTime, Vector3 gravity,bool gaussian)
+void ParticleSystem::shootFirework(float vel, float radius, float liveTime, float masa, Vector3 gravity,bool gaussian)
 {
 	Camera* cam = GetCamera();
 	Firework* firework;
-	float masa = 1;
-	firework = new Firework(cam->getTransform(), cam->getDir() * vel, gravity, masa, liveTime,DAMPING,200,1000,gaussian);
+	firework = new Firework(cam->getTransform(), cam->getDir() * vel, gravity, masa, liveTime,DAMPING,300,1000,gaussian);
 	firework->getRenderItem()->color = Vector4(1, 0.5, 0, 1);
 	firework->getRenderItem()->shape = CreateShape(physx::PxSphereGeometry(radius));
 	firework->getRenderItem()->transform = firework->getPos();
 	RegisterRenderItem(firework->getRenderItem());
+	pfR->addRegistry(new GravityForceGenerator(Vector3(0, -9.8, 0)), firework);
 	fireworks.push_back(firework);
 }
 
-void ParticleSystem::addGenerator(std::string name, Particle* particle, int numParticles, float frecuency)
+void ParticleSystem::addGenerator(std::string name, Particle* particle, int numParticles, float frecuency,int type)
 {
 	if(shot==false)
 	{
-		ParticleGenerator* pG = new ParticleGenerator(name, particle, numParticles, frecuency, this);
+		if(type == -1)
+		{
+			int randomValue = std::rand() % 2;
+			type = (randomValue == 0) ? -1 : 1;
+		}
+		
+		ParticleGenerator* pG = new ParticleGenerator(name, particle, numParticles, frecuency, type,this);
 		generators.push_back(pG);
 		shot = true;
 	}
@@ -145,7 +150,7 @@ void ParticleSystem::addGaussianGenerator(std::string name, Particle* particle, 
 	if (shot == false)
 	{
 		GaussianGenerator* pG = new GaussianGenerator(name, particle, numParticles, frecuency, this);
-		GaussianGenerators.push_back(pG);
+		generators.push_back(pG);
 		shot = true;
 	}
 }

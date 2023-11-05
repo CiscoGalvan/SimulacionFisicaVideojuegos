@@ -5,7 +5,7 @@ Firework::Firework(physx::PxTransform  pos, Vector3 vel, Vector3 acel, float mas
 	item = new RenderItem();
 	this->vel = vel;
 	this->pos = pos;
-	this->acel = acel;
+	this->force = acel;
 	this->damping = damping;
 	this->masa = masa;
 	this->liveTime = liveTime;

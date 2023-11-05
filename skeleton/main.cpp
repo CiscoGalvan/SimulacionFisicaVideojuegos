@@ -102,24 +102,40 @@ void keyPress(unsigned char key, const PxTransform& camera)
 	case 'R':
 	{	
 
-		pS->shootParticle(25, 0.2,2, Vector3(0, -9.8, 0));
+		pS->shootParticle(25, 0.2,20, 10,Vector3(0, -9.8, 0));
 		break;
 	}
 
 	case 'T':
 	{	
-		pS->shootParticle(10, 0.2, 2,Vector3(0, 3.0, 0));
+		pS->shootParticle(25, 0.2, 20,0.1,Vector3(0, -9.8, 0));
 		break;
 	}	
 
 	case 'Y':
 	{
-		pS->shootFirework(250, 0.2, 2, Vector3(0, -9.8, 0),false);
+		pS->shootFirework(250, 0.2, 2, 1,Vector3(0, -9.8, 0),false);
+		break;
 	}
 	case 'U':
 	{
-		pS->shootFirework(250, 0.2, 2, Vector3(0, -9.8, 0), true);
+		pS->shootFirework(250, 0.2, 2,1, Vector3(0, -9.8, 0), true);
+		break;
 	}
+	case 'I':
+	{
+		physx::PxTransform pT(-34, 100, -47);
+		Particle* particle;
+		float masa = 0.0001;
+		float vel = 2;
+		float liveTime = 10000;
+		particle = new Particle(pT, Vector3(0,0,0) * vel, Vector3(0,-9.8,0 ), masa, liveTime, DAMPING, false);
+		pS->addGenerator("fuente", particle, 10000, 0.01,2);
+		break;
+	}
+
+	case'P': pS->anadeFuerza();
+		break;
 	default:
 		break;
 	}

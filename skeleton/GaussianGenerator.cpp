@@ -1,6 +1,6 @@
 #include "GaussianGenerator.h"
 #include "ParticleSystem.h"
-GaussianGenerator::GaussianGenerator(std::string name, Particle* emitter, int numParticles, float frecuency, ParticleSystem* pS) : ParticleGenerator(name,emitter,numParticles,frecuency,pS){}
+GaussianGenerator::GaussianGenerator(std::string name, Particle* emitter, int numParticles, float frecuency, ParticleSystem* pS) : ParticleGenerator(name,emitter,numParticles,frecuency,-1,pS){}
 
 GaussianGenerator::~GaussianGenerator()
 {

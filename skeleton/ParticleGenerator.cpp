@@ -1,19 +1,16 @@
 #include "ParticleGenerator.h"
 #include "ParticleSystem.h"
 
-ParticleGenerator::ParticleGenerator(std::string name,Particle* emitter, int numParticles, float frecuency, ParticleSystem* pS)
+ParticleGenerator::ParticleGenerator(std::string name,Particle* emitter, int numParticles, float frecuency,int type, ParticleSystem* pS)
 {
 	this->emitter = emitter;
 	this->numParticles = numParticles;
 	this->name = name;
 	this->frecuency = frecuency;
 	this->nextRespawn = frecuency;
+	this->type = type;
 	this->pS = pS;
 	actualParticles = 0;
-
-
-	int randomValue = std::rand() % 2;
-    type = (randomValue == 0) ? -1 : 1;
 }
 
 ParticleGenerator::~ParticleGenerator()
@@ -55,7 +52,7 @@ void ParticleGenerator::update(double t)
 			RegisterRenderItem(particle->getRenderItem());
 			pS->addParticle(particle);
 		}
-		else
+		else if(type == 1)
 		{
 			int randomValue1 = std::rand() % 2;
 			int result1 = (randomValue1 == 0) ? -1 : 1;
@@ -75,6 +72,44 @@ void ParticleGenerator::update(double t)
 			particle->getRenderItem()->shape = CreateShape(physx::PxSphereGeometry(0.3));
 			particle->getRenderItem()->transform = particle->getPos();
 			RegisterRenderItem(particle->getRenderItem());
+			pS->addParticle(particle);
+		}
+		else if(type == 2)
+		{
+
+			int randomValue1 = std::rand() % 2;
+			int result1 = (randomValue1 == 0) ? -1 : 1;
+
+			int randomValue3 = std::rand() % 2;
+			int result3 = (randomValue3 == 0) ? -1 : 1;
+
+
+			int randomValue4 = std::rand() % 2;
+			int result4 = (randomValue3 == 0) ? 1e-9 : 100;
+
+
+			Particle* particle;
+			Camera* cam = GetCamera();
+
+			float masa = result4;
+			
+
+			
+			float liveTime = 30;
+			
+		
+			particle = new Particle(*emitter->getPos(), Vector3(randomVel2(gen2) * result1, 0, randomVel2(gen2) * result3) , Vector3(0, -9.8, 0), masa, liveTime, DAMPING, false);
+			particle->getRenderItem()->color = Vector4(distribution(gen), distribution(gen), distribution(gen), 1);
+			particle->getRenderItem()->shape = CreateShape(physx::PxSphereGeometry(2));
+			particle->getRenderItem()->transform = particle->getPos();
+			RegisterRenderItem(particle->getRenderItem());
+
+			//Anadimos cada fuerza a cada particula creada
+			for(auto it : pS->getForces())
+			{
+				
+				pS->getRegistry()->addRegistry(it, particle);
+			}
 			pS->addParticle(particle);
 		}
 	
