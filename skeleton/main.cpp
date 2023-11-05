@@ -102,7 +102,7 @@ void keyPress(unsigned char key, const PxTransform& camera)
 	case 'R':
 	{	
 
-		pS->shootParticle(25, 0.2,20, 10,Vector3(0, -9.8, 0));
+		pS->shootParticle(25, 0.2,20, 1000000000,Vector3(0, -9.8, 0));
 		break;
 	}
 

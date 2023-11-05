@@ -27,18 +27,23 @@ Particle::~Particle()
 	DeregisterRenderItem(item);
 	delete item;
 }
-
+void Particle::clearForce()
+{
+	force *= 0;
+}
 void Particle::integrate(double t)
 {
+	std::cout <<"FuerzaY: "<< force.y << "\n\n\n\n\n";
+
 	// Get the accel considering the force accum
-	Vector3 resulting_accel = force * (1/masa);
+	Vector3 resulting_accel = force * (pow(masa,-1));
+	
 	vel += resulting_accel * t; // Ex. 1.3 --> add acceleration
-	vel *= pow(damping, t); // Exercise 1.3 --> add damping
+	vel *= powf(damping, t); // Exercise 1.3 --> add damping
 	pos.p += vel * t;
 	this->timeAlive += t;
 	clearForce();
-
-
+	
 	//MRUA
 	//vel += force * t;
 	//vel *= pow(damping,t);

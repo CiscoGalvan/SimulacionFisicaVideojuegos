@@ -18,12 +18,6 @@ void ParticleSystem::update(double t)
 		shot = false;
 	}
 
-	if (!pfR->empty()) 
-	{
-		pfR->updateForces(t);
-
-	}
-	
 
 	for(auto it : generators)
 	{
@@ -86,6 +80,13 @@ void ParticleSystem::update(double t)
 		}
 		it = aux;
 	}
+
+
+
+	
+	pfR->updateForces(t);
+	
+
 
 
 }
