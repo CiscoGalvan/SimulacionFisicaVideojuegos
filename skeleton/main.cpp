@@ -99,43 +99,86 @@ void keyPress(unsigned char key, const PxTransform& camera)
 
 	switch(toupper(key))
 	{
-	case 'R':
+	case 'R':	//BOLA DE MASA GRANDE
 	{	
 
-		pS->shootParticle(25, 0.2,20, 1000000000,Vector3(0, -9.8, 0));
+		pS->shootParticle(10, 0.2,20, 1000,Vector3(0, -9.8, 0));
 		break;
 	}
 
-	case 'T':
+	case 'T':	//BOLA DE MASA PEQUEÑA
 	{	
 		pS->shootParticle(25, 0.2, 20,0.1,Vector3(0, -9.8, 0));
 		break;
 	}	
 
-	case 'Y':
+	case 'Y':	//FIREWORK 1
 	{
 		pS->shootFirework(250, 0.2, 2, 1,Vector3(0, -9.8, 0),false);
 		break;
 	}
-	case 'U':
+	case 'U':	//FIREWORK 2
 	{
 		pS->shootFirework(250, 0.2, 2,1, Vector3(0, -9.8, 0), true);
 		break;
 	}
+	case 'Q':
+	{
+		pS->showSquareFunction();
+		break;
+	}
 	case 'I':
 	{
-		physx::PxTransform pT(-34, 100, -47);
+
+		cout << GetCamera()->getTransform().p.x<<" "<< GetCamera()->getTransform().p.y<<" "<< GetCamera()->getTransform().p.z<<endl;
+		physx::PxTransform pT(20.1391, 89.0057 ,19.4672);
 		Particle* particle;
-		float masa = 0.0001;
+		float masa = 0.1;
 		float vel = 2;
 		float liveTime = 10000;
-		particle = new Particle(pT, Vector3(0,0,0) * vel, Vector3(0,-9.8,0 ), masa, liveTime, DAMPING, false);
-		pS->addGenerator("fuente", particle, 10000, 0.01,2);
+		particle = new Particle(pT, Vector3(0,0,0) * vel, Vector3(0,0,0 ), masa, liveTime, DAMPING, false);
+		pS->addGenerator("fuente", particle, 1, 0.01,2);
 		break;
 	}
 
-	case'P': pS->anadeFuerza();
+	case 'P': pS->anadeFuerza();
 		break;
+
+	case 'L': 
+	{
+		Camera* cam = GetCamera();
+		pS->generaParticula(physx::PxTransform(-34, 200, -47), Vector3(0, 0, 0), Vector3(0, 0, 0), 10, Vector3(0, -9.8, 0));
+		pS->generaParticula(physx::PxTransform(-34, 200, -27), Vector3(0, 0, 0), Vector3(0, 0, 0), 0.001, Vector3(0, -9.8, 0));
+	}
+	case'K':
+	{
+		pS->allowWind();
+		break;
+	}
+	case 'J':
+	{
+		pS->denyWind();
+		break;
+	}
+	case 'N':
+	{
+		pS->allowTorbellino();
+		break;
+	}
+	case 'M':
+	{
+		pS->denyTorbellino();
+		break;
+	}
+	case 'B':
+	{
+		pS->explode();
+		break;
+	}
+	case 'V':
+	{
+		pS->setGeneration();
+	}
 	default:
 		break;
 	}

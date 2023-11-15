@@ -44,12 +44,16 @@ void ParticleGenerator::update(double t)
 			Particle* particle;
 			Vector3 vel(randomVel(gen2) * result1, randomVel(gen2) * result2, randomVel(gen2) * result3);
 			float masa = 1;
-			float liveTime = 3;
+			float liveTime = 30;
 			particle = new Particle(*emitter->getPos(), vel, Vector3(0, -9.8, 0), masa, liveTime, DAMPING, false);
 			particle->getRenderItem()->color = Vector4(distribution(gen), distribution(gen), distribution(gen), 1);
 			particle->getRenderItem()->shape = CreateShape(physx::PxSphereGeometry(0.3));
 			particle->getRenderItem()->transform = particle->getPos();
 			RegisterRenderItem(particle->getRenderItem());
+			for (auto it : pS->getForces())
+			{
+				pS->getRegistry()->addRegistry(it, particle);
+			}
 			pS->addParticle(particle);
 		}
 		else if(type == 1)
@@ -66,12 +70,17 @@ void ParticleGenerator::update(double t)
 			Particle* particle;
 			Vector3 vel(randomVel(gen2) * result1 * 0.1, randomVel(gen2) * result2, randomVel(gen2) * result3);
 			float masa = 1;
-			float liveTime = 3;
+			float liveTime = 30;
 			particle = new Particle(*emitter->getPos(), vel, Vector3(0, -9.8, 0), masa, liveTime, DAMPING, false);
 			particle->getRenderItem()->color = Vector4(distribution(gen), distribution(gen), distribution(gen), 1);
 			particle->getRenderItem()->shape = CreateShape(physx::PxSphereGeometry(0.3));
 			particle->getRenderItem()->transform = particle->getPos();
 			RegisterRenderItem(particle->getRenderItem());
+			for (auto it : pS->getForces())
+			{
+
+				pS->getRegistry()->addRegistry(it, particle);
+			}
 			pS->addParticle(particle);
 		}
 		else if(type == 2)
@@ -84,26 +93,24 @@ void ParticleGenerator::update(double t)
 			int result3 = (randomValue3 == 0) ? -1 : 1;
 
 
-			int randomValue4 = std::rand() % 2;
-			int result4 = (randomValue3 == 0) ? 1e-9 : 100;
+		
 
 
 			Particle* particle;
 			Camera* cam = GetCamera();
 
-			float masa = result4;
+			float masa = emitter->getMass();
 			
 
 			
 			float liveTime = 30;
 			
 		
-			particle = new Particle(*emitter->getPos(), Vector3(randomVel2(gen2) * result1, 0, randomVel2(gen2) * result3) , Vector3(0, -9.8, 0), masa, liveTime, DAMPING, false);
+			particle = new Particle(*emitter->getPos(), Vector3(randomVel2(gen2) , 0, randomVel2(gen2) ) , Vector3(0, -9.8, 0), masa, liveTime, DAMPING, false);
 			particle->getRenderItem()->color = Vector4(distribution(gen), distribution(gen), distribution(gen), 1);
 			particle->getRenderItem()->shape = CreateShape(physx::PxSphereGeometry(2));
 			particle->getRenderItem()->transform = particle->getPos();
 			RegisterRenderItem(particle->getRenderItem());
-
 			//Anadimos cada fuerza a cada particula creada
 			for(auto it : pS->getForces())
 			{

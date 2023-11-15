@@ -1,17 +1,17 @@
 #include "ParticleForceRegistry.h"
 void ParticleForceRegistry::updateForces(double duration)
 {
+
+	for (auto it = begin(); it != end(); ++it)
 	{
-		for (auto it = begin(); it != end(); ++it)
-		{
-			it->first->updateForce(it->second, duration);
-		}
+		it->first->updateForce(it->second, duration);
 	}
+	
 }
 
 void ParticleForceRegistry::addRegistry(ForceGenerator* fG, Particle* p)
 {
-	this->insert({ fG,p });
+	insert(FRPair(fG, p));
 }
 
 void ParticleForceRegistry::deleteParticleRegistry(Particle* p)
@@ -23,7 +23,7 @@ void ParticleForceRegistry::deleteParticleRegistry(Particle* p)
 		{
 			it = erase(it);
 		}
-		else it;;
+		else ++it;
 	}
 }
 
@@ -37,6 +37,6 @@ void ParticleForceRegistry::deleteForceRegistry(ForceGenerator* fG)
 		{
 			it = erase(it);
 		}
-		else it;;
+		else it++;
 	}
 }

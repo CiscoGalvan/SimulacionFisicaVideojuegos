@@ -1,21 +1,41 @@
 #include "ParticleDragGenerator.h"
-ParticleDragGenerator::ParticleDragGenerator(const float k1, const float k2)
+ParticleDragGenerator::ParticleDragGenerator(Vector3 fuerzaViento,const float k1, const float k2, Vector3 origen, Vector3 tam)
 {
+	this->fuerzaViento = fuerzaViento;
+	this->position = origen;
+	this->tam = tam;
 	_k1 = k1;
 	_k2 = k2;
 }
 
 void ParticleDragGenerator::updateForce(Particle* particle, double t)
 {
-	if (fabs(1 / particle->getMass()) < 1 / (pow(10, 10)))
-		return;
+	Vector3 particlePosition = particle->getPos()->p;
 
-	Vector3 v = particle->getVel();
-	float drag_coef = v.normalize();
+	if((particlePosition.x >= position.x &&particlePosition.x <= position.x + tam.x) && (particlePosition.y >= position.y && particlePosition.y <= position.y + tam.y) && (particlePosition.z >= position.z && particlePosition.z <= position.z + tam.z))
+	{
+		if (fabs(1 / particle->getMass()) < 1e-10) return;
 
-	Vector3 dragF;
-	drag_coef = _k1 * drag_coef + _k2 * drag_coef * drag_coef;
-	dragF = -v * drag_coef;
-	//Apply the drag force
-	particle->addForce(dragF);
+
+
+		//Vector3 v = particle->getVel();
+		//Vector3 diff = f - v;
+		//Vector3 dragF;
+		//dragF = _k1 * diff + _k2 * diff.magnitude() * diff;
+
+		//particle->addForce(dragF);
+
+		Vector3 v = particle->getVel();
+
+		Vector3 diff = fuerzaViento - v;
+
+	
+		Vector3 dragF;
+
+		dragF = _k1 * diff + _k2 * diff * diff.magnitude();
+		//Apply the drag force
+		particle->addForce(dragF);
+	}
 }
+
+

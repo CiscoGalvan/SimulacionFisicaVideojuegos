@@ -22,8 +22,7 @@ Firework::~Firework()
 void Firework::integrate(double t)
 {
 	Particle::integrate(t);
-
-	if(pos.p.y > limit)
+	if(pos.p.y > limit || this->timeAlive> 0.2)
 	{
 		explosion = true;
 	}

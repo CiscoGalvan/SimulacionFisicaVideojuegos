@@ -33,8 +33,6 @@ void Particle::clearForce()
 }
 void Particle::integrate(double t)
 {
-	std::cout <<"FuerzaY: "<< force.y << "\n\n\n\n\n";
-
 	// Get the accel considering the force accum
 	Vector3 resulting_accel = force * (pow(masa,-1));
 	
