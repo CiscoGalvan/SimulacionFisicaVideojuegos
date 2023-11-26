@@ -99,13 +99,6 @@ void keyPress(unsigned char key, const PxTransform& camera)
 
 	switch(toupper(key))
 	{
-	case 'R':	//BOLA DE MASA GRANDE
-	{	
-
-		pS->shootParticle(10, 0.2,20, 1000,Vector3(0, -9.8, 0));
-		break;
-	}
-
 	case 'T':	//BOLA DE MASA PEQUEÑA
 	{	
 		pS->shootParticle(25, 0.2, 20,0.1,Vector3(0, -9.8, 0));
@@ -129,8 +122,6 @@ void keyPress(unsigned char key, const PxTransform& camera)
 	}
 	case 'I':
 	{
-
-		cout << GetCamera()->getTransform().p.x<<" "<< GetCamera()->getTransform().p.y<<" "<< GetCamera()->getTransform().p.z<<endl;
 		physx::PxTransform pT(20.1391, 89.0057 ,19.4672);
 		Particle* particle;
 		float masa = 0.1;
@@ -141,12 +132,8 @@ void keyPress(unsigned char key, const PxTransform& camera)
 		break;
 	}
 
-	case 'P': pS->anadeFuerza();
-		break;
-
 	case 'L': 
 	{
-		Camera* cam = GetCamera();
 		pS->generaParticula(physx::PxTransform(-34, 200, -47), Vector3(0, 0, 0), Vector3(0, 0, 0), 10, Vector3(0, -9.8, 0));
 		pS->generaParticula(physx::PxTransform(-34, 200, -27), Vector3(0, 0, 0), Vector3(0, 0, 0), 0.001, Vector3(0, -9.8, 0));
 	}
@@ -178,6 +165,28 @@ void keyPress(unsigned char key, const PxTransform& camera)
 	case 'V':
 	{
 		pS->setGeneration();
+		break;
+	}
+
+	case '1':
+	{
+		pS->generateSpringDemo();
+		break;
+	}
+	case '2':
+	{
+		pS->temporalGravity(Vector3(40, 0, 0));
+		break;
+	}
+	case '3':
+	{
+		pS->biggerK();
+		break;
+	}
+	case '4': 
+	{
+		pS->smallerK();
+		break;
 	}
 	default:
 		break;

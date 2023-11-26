@@ -1,0 +1,13 @@
+Input:
+T->Disparar partícula en la dirección de la cámara.
+Y->Disparar un fuego artificial normal.
+U->Disparar un fuego artificial gaussiano.
+Q->Mostrar la referencia
+I->Generar partículas justo encima del cuadrado
+L->Generar dos partículas con gravedades distintas
+K->Activar el viento
+J->Desactivar el viento
+N->Activar el torbellino
+M->Desactivar el torbellino
+B->Explosion (10 segundos de delay)
+V->Activar generación aleatoria.

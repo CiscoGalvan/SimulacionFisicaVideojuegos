@@ -27,6 +27,7 @@ public:
 	void clearForce();
 	inline void addForce(const Vector3& f) { force += f; }
 	inline float getMass() { return masa; }
+	inline void setMass(float mass) { masa = mass; }
 	inline Vector3 getVel() { return vel; }
 };
 

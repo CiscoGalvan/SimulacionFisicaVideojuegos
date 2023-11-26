@@ -76,6 +76,18 @@ void ParticleSystem::update(double t)
 #pragma endregion
 
 	
+	if(temporaryGravedad)
+	{
+		gravityTime--;
+	}
+
+	if (gravityTime <= 0)
+	{
+		temporaryGravedad = false;
+		gravityTime = 1000;
+		pfR->deleteForceRegistry(temporaryGravity);
+	}
+
 #pragma region ShootingDelay
 	if (shot)delay--;
 	if (delay <= 0)
@@ -139,7 +151,7 @@ void ParticleSystem::update(double t)
 		++aux;
 		physx::PxTransform* trans = (*it)->getPos();
 
-		if (trans->p.y < 20 || trans->p.y > 200 || (*it)->getTimeAlive() > (*it)->getDeathTime())
+		if (trans->p.y < -100 || trans->p.y > 250 || (*it)->getTimeAlive() > (*it)->getDeathTime())
 		{
 			pfR->deleteParticleRegistry(*it);
 			delete* it; particles.remove(*it);
@@ -159,6 +171,8 @@ void ParticleSystem::update(double t)
 
 	}
 	pfR->updateForces(t);
+	if(f3 != nullptr)
+		cout << f3->getK() << endl;
 #pragma endregion
 
 	
@@ -206,6 +220,49 @@ void ParticleSystem::cleanupPhysics()
 	}
 }
 
+void ParticleSystem::generateSpringDemo()
+{
+	Particle* particle1 = new Particle(physx::PxTransform(-34, 180, -47), Vector3(0, 0, 0), Vector3(0, 0, 0), 1, 200, DAMPING, false);
+	particle1->getRenderItem()->color = Vector4(1, 1, 0, 1);
+	particle1->getRenderItem()->shape = CreateShape(physx::PxSphereGeometry(2));
+	particle1->getRenderItem()->transform = particle1->getPos();
+	RegisterRenderItem(particle1->getRenderItem());
+
+	Particle* particle2 = new Particle(physx::PxTransform(-34, 190, -47), Vector3(0, 0, 0), Vector3(0, 0, 0), 2, 200, DAMPING, false);
+
+	particle2->getRenderItem()->color = Vector4(1, 0.5, 0, 1);
+	particle2->getRenderItem()->shape = CreateShape(physx::PxSphereGeometry(2));
+	particle2->getRenderItem()->transform = particle2->getPos();
+	RegisterRenderItem(particle2->getRenderItem());
+
+
+	SpringForceGenerator* f1 = new SpringForceGenerator(1, 0, particle2);
+	pfR->addRegistry(f1, particle1);
+	
+	SpringForceGenerator* f2 = new SpringForceGenerator(1, 0, particle1);
+	pfR->addRegistry(f2, particle2);
+
+
+	particles.push_back(particle1);
+	particles.push_back(particle2);
+
+
+	//Enganche
+	////Solo funciona si: la posición pasada a Anchored - la pasada a la partícula tiene todas sus coordenadas > 0.
+	//f3= new AnchoredSpringFG(2000, 10, Vector3(-34, 200, -47));
+	//Particle* p3 = new Particle(physx::PxTransform(-34, 180, -47), Vector3(0, 0, 0), Vector3(0, 0, 0), 10, 200, DAMPING, false);
+
+	//pfR->addRegistry(new GravityForceGenerator(Vector3(0, -9.8, 0)), p3);
+	//p3->getRenderItem()->color = Vector4(1, 0.5, 0, 1);
+	//p3->getRenderItem()->shape = CreateShape(physx::PxSphereGeometry(2));
+	//p3->getRenderItem()->transform = p3->getPos();
+	//RegisterRenderItem(p3->getRenderItem());
+
+	//pfR->addRegistry(f3, p3);
+	//fG.push_back(f3);
+	//particles.push_back(p3);
+
+}
 
 void ParticleSystem::shootParticle(float vel, float radius,float liveTime, float masa,Vector3 gravity)
 {
@@ -221,6 +278,20 @@ void ParticleSystem::shootParticle(float vel, float radius,float liveTime, float
 		pfR->addRegistry(it, particle);
 	}
 	particles.push_back(particle);
+}
+
+void ParticleSystem::temporalGravity(Vector3 v)
+{
+	if(gravityTime == 1000)
+	{
+		temporaryGravity = new GravityForceGenerator(Vector3(v));
+		for (auto it : particles)
+		{
+			pfR->addRegistry(temporaryGravity, it);
+		}
+		temporaryGravedad = true;
+	}
+	
 }
 void ParticleSystem::generaParticula(physx::PxTransform pos, Vector3 vel, Vector3 acel, float masa, Vector3 gravity)
 {

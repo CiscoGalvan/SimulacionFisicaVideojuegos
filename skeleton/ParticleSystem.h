@@ -6,6 +6,8 @@
 #include "ParticleDragGenerator.h"
 #include "GeneradorTorbellino.h"
 #include "ExplosionGenerator.h"
+#include "SpringForceGenerator.h"
+#include "AnchoredSpringFG.h"
 using namespace std;
 class ParticleSystem
 {
@@ -28,12 +30,17 @@ private:
 	ParticleDragGenerator* wind;
 	GeneradorTorbellino* torbellino;
 	GravityForceGenerator* gravedad;
+	GravityForceGenerator* temporaryGravity;
+	AnchoredSpringFG* f3 = nullptr;
 	ExplosionGenerator* explosion_tai;
 
 	bool showSquare = true;
 	bool registered = true;
 	bool shot = false;
 
+
+	bool temporaryGravedad = false;
+	float gravityTime = 1000;
 	std::random_device rd1;
 	std::uniform_real_distribution<double> randomVel{ 0.0, 50.0 };
 	
@@ -48,9 +55,14 @@ public:
 	void shootParticle(float vel, float radius,float liveTime,float masa, Vector3 gravity);
 	void shootFirework(float vel, float radius, float liveTime, float masa, Vector3 gravity,bool gaussian);
 	void addParticle(Particle* p) { particles.push_back(p); }
+	void generateSpringDemo();
+
 	inline void setGenerator() { affectedByGenerator = !affectedByGenerator; }
 
-	inline void anadeFuerza(){ fG.push_back(new GravityForceGenerator(Vector3(0, -0.1, 0))); }
+
+
+	inline void biggerK() { if(f3 != nullptr) f3->biggerK(); }
+	inline void smallerK() { if (f3 != nullptr) f3->smallerK(); }
 	inline ParticleForceRegistry* getRegistry() { return pfR; }
 	inline list<ForceGenerator*> getForces() { return fG; }
 	inline void showSquareFunction() { showSquare = !showSquare; }
@@ -58,6 +70,7 @@ public:
 	void allowWind();
 	void denyWind();
 
+	void temporalGravity(Vector3 v);
 	void allowTorbellino();
 	void denyTorbellino();
 

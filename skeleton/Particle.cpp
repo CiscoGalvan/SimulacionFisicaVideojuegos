@@ -36,16 +36,22 @@ void Particle::integrate(double t)
 	// Get the accel considering the force accum
 	Vector3 resulting_accel = force * (pow(masa,-1));
 	
-	vel += resulting_accel * t; // Ex. 1.3 --> add acceleration
-	vel *= powf(damping, t); // Exercise 1.3 --> add damping
+	/*#pragma region EULER SEMI-IMPLICITO
+	vel += resulting_accel * t; 
+	vel *= powf(damping, t);
 	pos.p += vel * t;
 	this->timeAlive += t;
 	clearForce();
-	
-	//MRUA
-	//vel += force * t;
-	//vel *= pow(damping,t);
-	//pos.p += vel * t ;
-	//this->timeAlive += t;
-	
+	#pragma endregion*/
+
+	//Este va acelerando con el tiempo, por lo que se sale de los limites del generador de fuerza por muelles y desaparece
+	#pragma region EULER 
+	pos.p += vel * t;
+	vel += resulting_accel * t;
+	this->timeAlive += t;
+	clearForce();
+	#pragma endregion
+
+
+
 }
