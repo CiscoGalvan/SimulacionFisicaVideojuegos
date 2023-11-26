@@ -27,11 +27,26 @@ void ParticleSystem::update(double t)
 	{
 		registered = false;
 		DeregisterRenderItem(windZone->getRenderItem());
+
+		
 	}
 	else if (showSquare && !registered)
 	{
 		registered = true;
 		RegisterRenderItem(windZone->getRenderItem());
+	}
+
+	if (!showSquare2 && registered2)
+	{
+		registered2 = false;
+		DeregisterRenderItem(waterZone->getRenderItem());
+
+
+	}
+	else if (showSquare2 && !registered2)
+	{
+		registered2 = true;
+		RegisterRenderItem(waterZone->getRenderItem());
 	}
 #pragma endregion
 	
@@ -151,7 +166,7 @@ void ParticleSystem::update(double t)
 		++aux;
 		physx::PxTransform* trans = (*it)->getPos();
 
-		if (trans->p.y < -100 || trans->p.y > 250 || (*it)->getTimeAlive() > (*it)->getDeathTime())
+		if (trans->p.y < -100 || trans->p.y > 500 || (*it)->getTimeAlive() > (*it)->getDeathTime())
 		{
 			pfR->deleteParticleRegistry(*it);
 			delete* it; particles.remove(*it);
@@ -236,11 +251,16 @@ void ParticleSystem::generateSpringDemo()
 	RegisterRenderItem(particle2->getRenderItem());
 
 
-	SpringForceGenerator* f1 = new SpringForceGenerator(1, 0, particle2);
+	GomaElastica* f1 = new GomaElastica(1, 10, particle2);
 	pfR->addRegistry(f1, particle1);
-	
-	SpringForceGenerator* f2 = new SpringForceGenerator(1, 0, particle1);
+
+	//Caida y seguimiento del otro
+	//pfR->addRegistry(new GravityForceGenerator(Vector3(0, -9.8, 0)), particle1);
+
+	pfR->addRegistry(new GravityForceGenerator(Vector3(10,0, 0)), particle1);
+	GomaElastica* f2 = new GomaElastica(1, 10, particle1);
 	pfR->addRegistry(f2, particle2);
+	pfR->addRegistry(new GravityForceGenerator(Vector3(-4, 0, 0)), particle2);
 
 
 	particles.push_back(particle1);
@@ -293,6 +313,102 @@ void ParticleSystem::temporalGravity(Vector3 v)
 	}
 	
 }
+
+void ParticleSystem::generateSlinky()
+{
+	Particle* particle1 = new Particle(physx::PxTransform(-34, 180, -47), Vector3(0, 0, 0), Vector3(0, 0, 0), 1, 200, DAMPING, false);
+	particle1->getRenderItem()->color = Vector4(1, 0, 0.1, 1);
+	particle1->getRenderItem()->shape = CreateShape(physx::PxSphereGeometry(2));
+	particle1->getRenderItem()->transform = particle1->getPos();
+	RegisterRenderItem(particle1->getRenderItem());
+
+
+	Particle* particle2 = new Particle(physx::PxTransform(-34, 185, -47), Vector3(0, 0, 0), Vector3(0, 0, 0), 1, 200, DAMPING, false);
+	particle2->getRenderItem()->color = Vector4(1, 0, 0.2, 1);
+	particle2->getRenderItem()->shape = CreateShape(physx::PxSphereGeometry(2));
+	particle2->getRenderItem()->transform = particle2->getPos();
+	RegisterRenderItem(particle2->getRenderItem());
+
+
+	Particle* particle3 = new Particle(physx::PxTransform(-34, 190, -47), Vector3(0, 0, 0), Vector3(0, 0, 0), 1, 200, DAMPING, false);
+	particle3->getRenderItem()->color = Vector4(1, 0, 0.3, 1);
+	particle3->getRenderItem()->shape = CreateShape(physx::PxSphereGeometry(2));
+	particle3->getRenderItem()->transform = particle3->getPos();
+	RegisterRenderItem(particle3->getRenderItem());
+
+
+	Particle* particle4 = new Particle(physx::PxTransform(-34, 195, -47), Vector3(0, 0, 0), Vector3(0, 0, 0), 1, 200, DAMPING, false);
+	particle4->getRenderItem()->color = Vector4(1, 0, 0.4, 1);
+	particle4->getRenderItem()->shape = CreateShape(physx::PxSphereGeometry(2));
+	particle4->getRenderItem()->transform = particle4->getPos();
+	RegisterRenderItem(particle4->getRenderItem());
+
+
+	Particle* particle5 = new Particle(physx::PxTransform(-34, 200, -47), Vector3(0, 0, 0), Vector3(0, 0, 0), 1, 200, DAMPING, false);
+	particle5->getRenderItem()->color = Vector4(1, 0, 0.5, 1);
+	particle5->getRenderItem()->shape = CreateShape(physx::PxSphereGeometry(2));
+	particle5->getRenderItem()->transform = particle5->getPos();
+	RegisterRenderItem(particle5->getRenderItem());
+
+	Particle* particle6 = new Particle(physx::PxTransform(-34, 205, -47), Vector3(0, 0, 0), Vector3(0, 0, 0), 1, 200, DAMPING, false);
+	particle6->getRenderItem()->color = Vector4(1, 0, 0.6, 1);
+	particle6->getRenderItem()->shape = CreateShape(physx::PxSphereGeometry(2));
+	particle6->getRenderItem()->transform = particle6->getPos();
+	RegisterRenderItem(particle6->getRenderItem());
+
+
+
+
+	GomaElastica* f1 = new GomaElastica(50, 1, particle2);
+	GomaElastica* f2 = new GomaElastica(50, 1, particle1);
+	GomaElastica* f3 = new GomaElastica(100, 1, particle2);
+	GomaElastica* f4 = new GomaElastica(100, 1, particle3);
+	GomaElastica* f5 = new GomaElastica(100, 1, particle5);
+	GomaElastica* f6 = new GomaElastica(100 ,1, particle6);
+
+	pfR->addRegistry(f2, particle2);
+	pfR->addRegistry(f1, particle1);
+	pfR->addRegistry(f2, particle1);
+	pfR->addRegistry(f1, particle2);
+
+
+
+	pfR->addRegistry(f3, particle2);
+	pfR->addRegistry(f3, particle4);
+
+
+	pfR->addRegistry(f4, particle3);
+	pfR->addRegistry(f4, particle5);
+
+
+
+	pfR->addRegistry(f5, particle4);
+	pfR->addRegistry(f5, particle6);
+	
+	
+	pfR->addRegistry(f6, particle5);
+
+
+	pfR->addRegistry(f2, particle3);
+
+	particles.push_back(particle1);
+	particles.push_back(particle2);
+	particles.push_back(particle3);
+	particles.push_back(particle4);
+	particles.push_back(particle5);
+	particles.push_back(particle6);
+	
+
+
+	pfR->addRegistry(new GravityForceGenerator(Vector3(0,-9.8, 0)), particle1);
+	pfR->addRegistry(new GravityForceGenerator(Vector3(0,-9.8, 0)), particle2);
+	pfR->addRegistry(new GravityForceGenerator(Vector3(0,-9.8, 0)), particle3);
+	pfR->addRegistry(new GravityForceGenerator(Vector3(0,-9.8, 0)), particle4);
+	pfR->addRegistry(new GravityForceGenerator(Vector3(0,-9.8, 0)), particle5);
+	pfR->addRegistry(new GravityForceGenerator(Vector3(0,-9.8, 0)), particle6);
+
+
+}
 void ParticleSystem::generaParticula(physx::PxTransform pos, Vector3 vel, Vector3 acel, float masa, Vector3 gravity)
 {
 	
@@ -319,6 +435,32 @@ void ParticleSystem::shootFirework(float vel, float radius, float liveTime, floa
 	RegisterRenderItem(firework->getRenderItem());
 	pfR->addRegistry(new GravityForceGenerator(gravity), firework);
 	fireworks.push_back(firework);
+}
+void ParticleSystem::generateWater()
+{
+	if(waterZone == nullptr)
+	{
+		waterZone = new Particle(physx::PxTransform(Vector3(20, 39, 15)), Vector3(0, 0, 0), Vector3(0, 0, 0), 0, INF, 0, false);
+		waterZone->getRenderItem()->color = physx::PxVec4(0.0, 0.1, 1.0,0.1);
+		waterZone->getRenderItem()->shape = CreateShape(physx::PxBoxGeometry(15, 15, 15));
+		waterZone->getRenderItem()->transform = waterZone->getPos();
+		RegisterRenderItem(waterZone->getRenderItem());
+
+		physx::PxTransform pT(20.1391, 89.0057, 19.4672);
+
+		Particle* particle;
+		particle = new Particle(pT, Vector3(0,0,0), Vector3(0, 0, 0), 1, 200, DAMPING, false);
+		particle->getRenderItem()->color = Vector4(1, 0.5, 0, 1);
+		particle->getRenderItem()->shape = CreateShape(physx::PxSphereGeometry(2));
+		particle->getRenderItem()->transform = particle->getPos();
+		RegisterRenderItem(particle->getRenderItem());
+		float volume = 9.05;
+
+		BuoyancyForceGenerator* bG = new BuoyancyForceGenerator(waterZone, waterZone->getPos()->p.y, volume, 1, 9.8);
+		pfR->addRegistry(bG, particle);
+		pfR->addRegistry(new GravityForceGenerator(Vector3(0,-9.8,0)), particle);
+		addParticle(particle);
+	}
 }
 
 void ParticleSystem::addGenerator(std::string name, Particle* particle, int numParticles, float frecuency,int type)

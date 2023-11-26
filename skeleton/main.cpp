@@ -115,12 +115,17 @@ void keyPress(unsigned char key, const PxTransform& camera)
 		pS->shootFirework(250, 0.2, 2,1, Vector3(0, -9.8, 0), true);
 		break;
 	}
-	case 'Q':
+	case 'Q':	//SHOW RED SQUARE
 	{
 		pS->showSquareFunction();
 		break;
 	}
-	case 'I':
+	case 'Z':	//SHOW BLUE SQUARE
+	{
+		pS->showSquareFunction2();
+		break;
+	}
+	case 'I':   //SPAWN PARTICLES ABOVE RED SQUARE
 	{
 		physx::PxTransform pT(20.1391, 89.0057 ,19.4672);
 		Particle* particle;
@@ -132,60 +137,70 @@ void keyPress(unsigned char key, const PxTransform& camera)
 		break;
 	}
 
-	case 'L': 
+	case 'L':   //SPAWN TWO PARTICLES WITH DIFFERENT MASS
 	{
 		pS->generaParticula(physx::PxTransform(-34, 200, -47), Vector3(0, 0, 0), Vector3(0, 0, 0), 10, Vector3(0, -9.8, 0));
 		pS->generaParticula(physx::PxTransform(-34, 200, -27), Vector3(0, 0, 0), Vector3(0, 0, 0), 0.001, Vector3(0, -9.8, 0));
 	}
-	case'K':
+	case'K':	//ACTIVATE WIND IN RED SQUARE
 	{
 		pS->allowWind();
 		break;
 	}
-	case 'J':
+	case 'J':	//DENY WIND IN RED SQUARE
 	{
 		pS->denyWind();
 		break;
 	}
-	case 'N':
+	case 'N':	//ACTIVATE WHIRLWIND
 	{
 		pS->allowTorbellino();
 		break;
 	}
-	case 'M':
+	case 'M':   //DEACTIVATE WHIRLWIND
 	{
 		pS->denyTorbellino();
 		break;
 	}
-	case 'B':
+	case 'B':	//ACTIVATE EXPLOSION
 	{
 		pS->explode();
 		break;
 	}
-	case 'V':
+	case 'V':	//RANDOM GEN
 	{
 		pS->setGeneration();
 		break;
 	}
 
-	case '1':
+	case '1':	//TWO PARTICLES JOINT BY A SPRING
 	{
 		pS->generateSpringDemo();
 		break;
 	}
-	case '2':
+	case '2':	//TO TES GRAVITY IN JOINTS
 	{
 		pS->temporalGravity(Vector3(40, 0, 0));
 		break;
 	}
-	case '3':
+	case '3':	//TO MAKE THE CONSTANT K BIGGER
 	{
 		pS->biggerK();
 		break;
 	}
-	case '4': 
+	case '4':	//AND SMALLER
 	{
 		pS->smallerK();
+		break;
+	}
+	case'5':	//GENERATES A SLINKY
+	{
+		pS->generateSlinky();
+		break;
+	}
+	case'6':	//GENERATES WATER
+	{
+		pS->generateWater();
 		break;
 	}
 	default:
