@@ -441,7 +441,7 @@ void ParticleSystem::generateWater()
 	{
 		waterZone = new Particle(physx::PxTransform(Vector3(20, 39, 15)), Vector3(0, 0, 0), Vector3(0, 0, 0), 0, INF, 0, false);
 		waterZone->getRenderItem()->color = physx::PxVec4(0.0, 0.1, 1.0,0.1);
-		waterZone->getRenderItem()->shape = CreateShape(physx::PxBoxGeometry(15, 15, 15));
+		waterZone->getRenderItem()->shape = CreateShape(physx::PxBoxGeometry(15, 1, 15));
 		waterZone->getRenderItem()->transform = waterZone->getPos();
 		RegisterRenderItem(waterZone->getRenderItem());
 
