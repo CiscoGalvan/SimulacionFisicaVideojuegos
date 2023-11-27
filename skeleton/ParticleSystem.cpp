@@ -186,8 +186,7 @@ void ParticleSystem::update(double t)
 
 	}
 	pfR->updateForces(t);
-	if(f3 != nullptr)
-		cout << f3->getK() << endl;
+	
 #pragma endregion
 
 	
