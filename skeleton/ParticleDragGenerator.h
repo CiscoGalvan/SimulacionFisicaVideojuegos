@@ -8,6 +8,7 @@ public:
 	ParticleDragGenerator(Vector3 fuerzaViento,const float k1, const float k2,Vector3 origen, Vector3 tam);	
 protected:
 	virtual void updateForce(Particle* particle, double t);
+	virtual void updateForce(physx::PxRigidBody* solid, double duration) {};
 	inline void setDrag(float k1, float k2) { _k1 = k1; _k2 = k2; }
 	inline float getK1() { return _k1; }
 	inline float getK2() { return _k2; }

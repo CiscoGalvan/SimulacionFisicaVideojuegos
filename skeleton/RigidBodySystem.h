@@ -6,6 +6,7 @@
 #include <list>
 #include "SolidGenerator.h"
 #include "RigidForceRegistry.h"
+#include "GeneradorTorbellino.h"
 using namespace physx;
 class RigidBodySystem
 {
@@ -17,9 +18,9 @@ private:
 	list<ForceGenerator*>fG;
 	PxPhysics* _gPhysics;
 	PxScene* _gScene;
-
+	GeneradorTorbellino* torbellino;
 	PxRigidStatic* floor2;
-	
+	bool active = false;
 public:
 
 	RigidBodySystem(PxPhysics* gPhysics, PxScene* gScene);
@@ -35,5 +36,8 @@ public:
 	inline PxPhysics* getPhysics() { return _gPhysics; }
 	inline PxScene* getScene() { return _gScene; }
 	void addGenerator(Particle* p, int nParticles, float frecuency);
+	void allowTorbellino();
+	void denyTorbellino();
+	void switch2();
 };
 

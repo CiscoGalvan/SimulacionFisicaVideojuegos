@@ -229,6 +229,11 @@ void keyPress(unsigned char key, const PxTransform& camera)
 		
 		break;
 	}
+	case'9':
+	{
+		rS->switch2();
+		break;
+	}
 	default:
 		break;
 	}
