@@ -9,6 +9,7 @@ private:
 	double duration = -1;
 public:
 	virtual void updateForce(Particle* particle,double t) = 0;
+	virtual void updateForce(physx::PxRigidBody* solid, double duration) {};
 	inline bool update(double t)
 	{
 		_t += t;

@@ -1,6 +1,20 @@
 #pragma once
+#include "PxPhysics.h"
+#include "PxShape.h"
 #include "RenderUtils.hpp"
 #include <iostream>
+
+using namespace physx;
+struct RigidBody
+{
+	PxRigidBody* _rb;
+	RenderItem* item;
+	PxShape* shape;
+	float timeAlive = 0;
+	float timeUntilDeath;
+};
+
+
 class Particle
 {
 protected:

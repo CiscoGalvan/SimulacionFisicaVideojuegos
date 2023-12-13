@@ -11,3 +11,9 @@ N->Activar el torbellino
 M->Desactivar el torbellino
 B->Explosion (10 segundos de delay)
 V->Activar generación aleatoria.
+1->Instancia dos partículas unidas por un muelle
+2->Les aplica gravedad a las dos partículas unidas
+3->Aumenta la constante K
+4->Disminuye la constante K
+5->Crea un slinky
+6->Genera el agua

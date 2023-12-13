@@ -114,9 +114,18 @@ void ParticleSystem::update(double t)
 
 	
 #pragma region Updates
-	for (auto it : generators)
+	for (auto it = generators.begin(); it != generators.end();)
 	{
-		it->update(t);
+		if ((*it)->finished())
+		{
+			it = generators.erase(it);
+		}
+		else
+		{
+			(*it)->update(t);
+			it++;
+		}
+
 	}
 
 	auto ai = fireworks.begin();

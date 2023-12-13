@@ -86,23 +86,8 @@ void ParticleGenerator::update(double t)
 		else if(type == 2)
 		{
 
-			int randomValue1 = std::rand() % 2;
-			int result1 = (randomValue1 == 0) ? -1 : 1;
-
-			int randomValue3 = std::rand() % 2;
-			int result3 = (randomValue3 == 0) ? -1 : 1;
-
-
-		
-
-
 			Particle* particle;
-			Camera* cam = GetCamera();
-
 			float masa = emitter->getMass();
-			
-
-			
 			float liveTime = 30;
 			
 		
@@ -114,13 +99,10 @@ void ParticleGenerator::update(double t)
 			//Anadimos cada fuerza a cada particula creada
 			for(auto it : pS->getForces())
 			{
-				
 				pS->getRegistry()->addRegistry(it, particle);
 			}
 			pS->addParticle(particle);
 		}
-	
-
 		nextRespawn += frecuency;
 		actualParticles++;
 	}

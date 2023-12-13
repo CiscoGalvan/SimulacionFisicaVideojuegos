@@ -2,7 +2,6 @@
 #include "Particle.h"
 #include <random>
 #include <list>
-
 class ParticleSystem;
 class ParticleGenerator
 {

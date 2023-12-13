@@ -8,6 +8,7 @@
 #include "RenderUtils.hpp"
 #include "callbacks.hpp"
 #include "ParticleSystem.h"
+#include "RigidBodySystem.h"
 #include <iostream>
 #include <list>
 
@@ -29,6 +30,7 @@ PxMaterial*				gMaterial	= NULL;
 PxPvd*                  gPvd        = NULL;
 
 ParticleSystem* pS = NULL;
+RigidBodySystem* rS = NULL;
 PxDefaultCpuDispatcher*	gDispatcher = NULL;
 PxScene*				gScene      = NULL;
 ContactReportCallback gContactReportCallback;
@@ -49,7 +51,7 @@ void initPhysics(bool interactive)
 
 	gMaterial = gPhysics->createMaterial(0.5f, 0.5f, 0.6f);
 
-	pS = new ParticleSystem();
+	
 
 
 	// For Solid Rigids +++++++++++++++++++++++++++++++++++++
@@ -60,6 +62,10 @@ void initPhysics(bool interactive)
 	sceneDesc.filterShader = contactReportFilterShader;
 	sceneDesc.simulationEventCallback = &gContactReportCallback;
 	gScene = gPhysics->createScene(sceneDesc);
+
+	pS = new ParticleSystem();
+	rS = new RigidBodySystem(gPhysics, gScene);
+
 }
 
 
@@ -71,6 +77,7 @@ void stepPhysics(bool interactive, double t)
 	PX_UNUSED(interactive);
 	gScene->simulate(t);
 	pS->update(t);
+	rS->update(t);
 	gScene->fetchResults(true);
 }
 
@@ -89,6 +96,7 @@ void cleanupPhysics(bool interactive)
 	gPvd->release();
 	transport->release();
 	pS->cleanupPhysics();
+	//rS->cleanUpPhysics();
 	gFoundation->release();
 }
 
@@ -130,9 +138,8 @@ void keyPress(unsigned char key, const PxTransform& camera)
 		physx::PxTransform pT(20.1391, 89.0057 ,19.4672);
 		Particle* particle;
 		float masa = 0.1;
-		float vel = 2;
 		float liveTime = 10000;
-		particle = new Particle(pT, Vector3(0,0,0) * vel, Vector3(0,0,0 ), masa, liveTime, DAMPING, false);
+		particle = new Particle(pT, Vector3(0,0,0), Vector3(0,0,0 ), masa, liveTime, DAMPING, false);
 		pS->addGenerator("fuente", particle, 1, 0.01,2);
 		break;
 	}
@@ -201,6 +208,25 @@ void keyPress(unsigned char key, const PxTransform& camera)
 	case'6':	//GENERATES WATER
 	{
 		pS->generateWater();
+		break;
+	}
+	case '7' : 
+	{	
+		
+		Camera* cam = GetCamera();	
+		rS->addDynamicObject(0.2f, 0.1f, 0.3f, Vector3(1, 1, 1), Vector3(4, 4, 4), Vector4(1, 0.5, 0, 1), cam->getTransform().p,cam->getDir() * 50, Vector3(0, 80, 80),0.15, 10000);
+		break;
+	}
+	case '8':
+	{
+		physx::PxTransform pT(20.1391, 89.0057, 19.4672);
+		Particle* particle;
+		float masa = 0.1;
+		float liveTime = 10000;
+		particle = new Particle(pT, Vector3(0, 0, 0) , Vector3(0, 0, 0), masa, liveTime, DAMPING, false);
+		rS->addGenerator(particle, 100, 0.1);
+		break;
+		
 		break;
 	}
 	default:
