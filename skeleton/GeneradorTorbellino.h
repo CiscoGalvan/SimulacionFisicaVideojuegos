@@ -1,5 +1,6 @@
 #pragma once
 #include "ParticleDragGenerator.h"
+#include "Bola.h"
 class GeneradorTorbellino : public ParticleDragGenerator
 {
 public:
@@ -7,6 +8,7 @@ public:
 	~GeneradorTorbellino() {}
 	void updateForce(Particle* particle, double t) override;
     void updateForce(physx::PxRigidBody* solid, double duration);
+    void updateForce(Bola* solid, double duration);
 private:
 
 };

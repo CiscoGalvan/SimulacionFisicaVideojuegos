@@ -3,6 +3,7 @@
 
 #include "core.hpp"
 #include <PxPhysicsAPI.h>
+#include <PxRigidActor.h>
 
 physx::PxFilterFlags contactReportFilterShader(physx::PxFilterObjectAttributes attributes0, physx::PxFilterData filterData0,
 	physx::PxFilterObjectAttributes attributes1, physx::PxFilterData filterData1,

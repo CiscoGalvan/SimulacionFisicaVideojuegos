@@ -17,7 +17,6 @@
     <ClCompile Include="GaussianGenerator.cpp" />
     <ClCompile Include="ForceGenerator.cpp" />
     <ClCompile Include="ParticleForceRegistry.cpp" />
-    <ClCompile Include="Source.cpp" />
     <ClCompile Include="GravityForceGenerator.cpp" />
     <ClCompile Include="ParticleDragGenerator.cpp" />
     <ClCompile Include="GeneradorTorbellino.cpp" />
@@ -29,6 +28,9 @@
     <ClCompile Include="RigidBodySystem.cpp" />
     <ClCompile Include="RigidForceRegistry.cpp" />
     <ClCompile Include="SolidGenerator.cpp" />
+    <ClCompile Include="Bola.cpp" />
+    <ClCompile Include="Palo.cpp" />
+    <ClCompile Include="FuerzaInstantanea.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -58,6 +60,9 @@
     <ClInclude Include="RigidBodySystem.h" />
     <ClInclude Include="RigidForceRegistry.h" />
     <ClInclude Include="SolidGenerator.h" />
+    <ClInclude Include="Bola.h" />
+    <ClInclude Include="Palo.h" />
+    <ClInclude Include="FuerzaInstantanea.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">

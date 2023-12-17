@@ -16,3 +16,20 @@ void ExplosionGenerator::updateForce(Particle* p, double t)
 		p->addForce(f);
 	}
 }
+
+
+void ExplosionGenerator::updateForce(physx::PxRigidBody* solid, double t)
+{
+	if (fabs(1 / solid->getMass()) < 1e-10) return;
+
+	radius += velocity * t; // El radio aumenta con el tiempo
+
+	Vector3 aux = solid->getGlobalPose().p - position;
+	double r = sqrt((aux.x * aux.x + aux.y * aux.y + aux.z * aux.z));
+
+	if (r < radius)
+	{
+		Vector3 f = (k / (r * r)) * aux * exp(-t / timeConstant);
+		solid->addForce(f);
+	}
+}

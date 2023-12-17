@@ -1,7 +1,7 @@
 #include <vector>
 
 #include "PxPhysicsAPI.h"
-
+#include <iostream>
 #include "core.hpp"
 #include "RenderUtils.hpp"
 
@@ -12,6 +12,7 @@ extern void initPhysics(bool interactive);
 extern void stepPhysics(bool interactive, double t);	
 extern void cleanupPhysics(bool interactive);
 extern void keyPress(unsigned char key, const PxTransform& camera);
+extern void mousePressed(int button, int state);
 extern PxPhysics* gPhysics;
 extern PxMaterial* gMaterial;
 
@@ -19,8 +20,9 @@ std::vector<const RenderItem*> gRenderItems;
 
 double PCFreq = 0.0;
 __int64 CounterStart = 0;
-__int64 CounterLast = 0;
+__int64 CounterLast = 0; 
 
+int buttonNow = 0;
 void StartCounter()
 {
 	LARGE_INTEGER li;
@@ -49,7 +51,7 @@ namespace
 
 void motionCallback(int x, int y)
 {
-	sCamera->handleMotion(x, y);
+	if (buttonNow == 2)sCamera->handleMotion(x, y);
 }
 
 void keyboardCallback(unsigned char key, int x, int y)
@@ -63,15 +65,18 @@ void keyboardCallback(unsigned char key, int x, int y)
 
 void mouseCallback(int button, int state, int x, int y)
 {
+	buttonNow = button;
 	sCamera->handleMouse(button, state, x, y);
-}
+	mousePressed(button, state);
 
+}
 void idleCallback()
 {
 	glutPostRedisplay();
 }
 
 float stepTime = 0.0f;
+
 //#define FIXED_STEP
 
 void renderCallback()
@@ -136,6 +141,7 @@ void exitCallback(void)
 
 void renderLoop()
 {
+	
 	StartCounter();
 	sCamera = new Camera(PxVec3(50.0f, 50.0f, 50.0f), PxVec3(-0.6f,-0.2f,-0.7f));
 

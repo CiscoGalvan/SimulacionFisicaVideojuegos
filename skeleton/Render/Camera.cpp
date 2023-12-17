@@ -59,6 +59,8 @@ bool Camera::handleKey(unsigned char key, int x, int y, float speed)
 	PX_UNUSED(x);
 	PX_UNUSED(y);
 
+
+	//AQUI
 	PxVec3 viewY = mDir.cross(PxVec3(0,1,0)).getNormalized();
 	switch(toupper(key))
 	{
@@ -117,6 +119,16 @@ PxVec3 Camera::getDir() const
 	return mDir; 
 }
 
+
+void Camera::setTransform(physx::PxTransform* p)
+{
+	mEye = p->p;
+}
+
+void Camera::setDir(physx::PxTransform* p)
+{
+	mDir = p->p;
+}
 
 }
 

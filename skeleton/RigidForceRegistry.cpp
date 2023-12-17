@@ -39,3 +39,32 @@ void RigidForceRegistry::deleteForceRegistry(ForceGenerator* fG)
 		else it++;
 	}
 }
+
+
+void BolaForceRegistry::updateForces(double duration)
+{
+
+	for (auto it = begin(); it != end(); ++it)
+	{
+		it->first->updateForce(&it->second, duration);
+	}
+
+}
+
+void BolaForceRegistry::addRegistry(ForceGenerator* fG, Bola rb)
+{
+	insert(bolaPair(fG, rb));
+}
+
+void BolaForceRegistry::deleteForceRegistry(ForceGenerator* fG)
+{
+	auto it = begin();
+	while (it != end())
+	{
+		if (it->first == fG)
+		{
+			it = erase(it);
+		}
+		else it++;
+	}
+}
