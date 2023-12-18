@@ -1,5 +1,6 @@
 #pragma once
 #include "Particle.h"
+#include "Bola.h"
 using namespace std;
 class ForceGenerator
 {
@@ -10,6 +11,7 @@ private:
 public:
 	virtual void updateForce(Particle* particle,double t) = 0;
 	virtual void updateForce(physx::PxRigidBody* solid, double duration) {};
+	virtual void updateForce(Bola* solid, double duration) {};
 	inline bool update(double t)
 	{
 		_t += t;

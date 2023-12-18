@@ -20,7 +20,10 @@ void AnchoredSpringFG::updateForce(Particle* p, double t)
 	// Length
 	float length = f.normalize();
 	length = (length - this->length);
-	
+	if (length > 3.46133e+17)
+	{
+		multiply = true;
+	}
 	if (length > 0.0f) {
 		f *= -(length * k);
 		p->addForce(f);

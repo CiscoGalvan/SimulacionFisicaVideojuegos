@@ -7,7 +7,7 @@ public:
 	ExplosionGenerator(double K, double constant, Vector3 pos, double vel, double r) : k(K), timeConstant(constant), position(pos), velocity(vel), radius(r) {};
 
 	virtual void updateForce(Particle* p, double t);
-
+	virtual void updateForce(physx::PxRigidBody* solid, double duration);
 	void setCoefficient(double K) { k = K; };
 
 	void setConstant(double constant) { timeConstant = constant; };
