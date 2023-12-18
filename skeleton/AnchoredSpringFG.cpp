@@ -24,7 +24,7 @@ void AnchoredSpringFG::updateForce(Particle* p, double t)
 	{
 		multiply = true;
 	}
-	if (length > 0.0f) {
+	else if (length > 0.0f) {
 		f *= -(length * k);
 		p->addForce(f);
 	}

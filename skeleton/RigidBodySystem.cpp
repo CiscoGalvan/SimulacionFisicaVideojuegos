@@ -5,26 +5,23 @@ RigidBodySystem::RigidBodySystem(PxPhysics* gPhysics, PxScene* gScene)
 	_gPhysics = gPhysics;
 	_gScene = gScene;
 
-	
-	
+
+
 	rFR = new RigidForceRegistry();
 
 	pfR = new ParticleForceRegistry();
 
-
+#pragma region Creacion de la mesa
 	//Tablero principal
 	PxRigidStatic* table;
-	
-	table = gPhysics->createRigidStatic(PxTransform(0,0,0));
+
+	table = gPhysics->createRigidStatic(PxTransform(0, 0, 0));
 	PxShape* shape = CreateShape(PxBoxGeometry(50, 0.1, 100));
 	table->attachShape(*shape);
 	gScene->addActor(*table);
 	table->setName("table");
 	RenderItem* item;
 	item = new RenderItem(shape, table, { 0,0.01,0,1 });
-	
-	
-
 
 
 	//Bordes
@@ -55,7 +52,7 @@ RigidBodySystem::RigidBodySystem(PxPhysics* gPhysics, PxScene* gScene)
 	PxRigidStatic* side3;
 	side3 = gPhysics->createRigidStatic(PxTransform(50, 1, 48.75));
 	PxTransform p(52.8, 1, 48.25);
-	p.q = PxQuat(PxPi/2,PxVec3(0,1,0));
+	p.q = PxQuat(PxPi / 2, PxVec3(0, 1, 0));
 	side3->setGlobalPose(p);
 	PxShape* shape3 = CreateShape(PxBoxGeometry(41.625, 3, 4.8));
 	side3->attachShape(*shape3);
@@ -63,7 +60,7 @@ RigidBodySystem::RigidBodySystem(PxPhysics* gPhysics, PxScene* gScene)
 	side3->setName("side3");
 	RenderItem* item3;
 	item3 = new RenderItem(shape3, side3, { 0.5,0.25,0,1 });
-	
+
 
 	PxRigidStatic* side4;
 	side4 = gPhysics->createRigidStatic(PxTransform(-50, 1, 48.75));
@@ -146,7 +143,7 @@ RigidBodySystem::RigidBodySystem(PxPhysics* gPhysics, PxScene* gScene)
 	PxRigidStatic* side10;
 	side10 = gPhysics->createRigidStatic(PxTransform(52.9, 1, -91.96));
 	PxTransform p8(-52.9, 1, -91.96);
-	p8.q = PxQuat(PxPi / 4 + PxPi/2, PxVec3(0, 1, 0));
+	p8.q = PxQuat(PxPi / 4 + PxPi / 2, PxVec3(0, 1, 0));
 	side10->setGlobalPose(p8);
 	PxShape* shape10 = CreateShape(PxBoxGeometry(5, 3, 2));
 	side10->attachShape(*shape10);
@@ -160,7 +157,7 @@ RigidBodySystem::RigidBodySystem(PxPhysics* gPhysics, PxScene* gScene)
 	PxRigidStatic* side11;
 	side11 = gPhysics->createRigidStatic(PxTransform(52.9, 1, -91.96));
 	PxTransform p9(52.9, 1, 91.96);
-	p9.q = PxQuat(PxPi*2 - PxPi / 4, PxVec3(0, 1, 0));
+	p9.q = PxQuat(PxPi * 2 - PxPi / 4, PxVec3(0, 1, 0));
 	side11->setGlobalPose(p9);
 	PxShape* shape11 = CreateShape(PxBoxGeometry(5, 3, 2));
 	side11->attachShape(*shape11);
@@ -174,7 +171,7 @@ RigidBodySystem::RigidBodySystem(PxPhysics* gPhysics, PxScene* gScene)
 	PxRigidStatic* side12;
 	side12 = gPhysics->createRigidStatic(PxTransform(42.2, 1, -103));
 	PxTransform p10(42.2, 1, 103);
-	p10.q = PxQuat(PxPi*2 - PxPi / 4, PxVec3(0, 1, 0));
+	p10.q = PxQuat(PxPi * 2 - PxPi / 4, PxVec3(0, 1, 0));
 	side12->setGlobalPose(p10);
 	PxShape* shape12 = CreateShape(PxBoxGeometry(5, 3, 2));
 	side8->attachShape(*shape12);
@@ -190,7 +187,7 @@ RigidBodySystem::RigidBodySystem(PxPhysics* gPhysics, PxScene* gScene)
 	PxRigidStatic* side13;
 	side13 = gPhysics->createRigidStatic(PxTransform(-50, 1, 100));
 	PxTransform p11(-42.2, 1, 103);
-	p11.q = PxQuat( PxPi-(PxPi / 4 + PxPi / 2), PxVec3(0, 1, 0));
+	p11.q = PxQuat(PxPi - (PxPi / 4 + PxPi / 2), PxVec3(0, 1, 0));
 	side13->setGlobalPose(p11);
 	PxShape* shape13 = CreateShape(PxBoxGeometry(5, 3, 2));
 	side13->attachShape(*shape13);
@@ -216,7 +213,7 @@ RigidBodySystem::RigidBodySystem(PxPhysics* gPhysics, PxScene* gScene)
 	PxRigidStatic* side15;
 	side15 = gPhysics->createRigidStatic(PxTransform(52.9, 1, 91.96));
 	PxTransform p13(-54, 1, 9.22);
-	p13.q = PxQuat( PxPi/2, PxVec3(0, 1, 0));
+	p13.q = PxQuat(PxPi / 2, PxVec3(0, 1, 0));
 	side15->setGlobalPose(p13);
 	PxShape* shape15 = CreateShape(PxBoxGeometry(2.5, 3, 2));
 	side15->attachShape(*shape15);
@@ -264,14 +261,14 @@ RigidBodySystem::RigidBodySystem(PxPhysics* gPhysics, PxScene* gScene)
 	side18->setName("side10");
 	RenderItem* item18;
 	item18 = new RenderItem(shape18, side18, { 0.5,0.25,0,1 });
-	
+
 
 
 
 	//Filos Dorados
 	PxRigidStatic* side19;
 	side19 = gPhysics->createRigidStatic(PxTransform(52.9, 1, 91.96));
-	PxTransform p17(60, 1,0);
+	PxTransform p17(60, 1, 0);
 	side19->setGlobalPose(p17);
 	PxShape* shape19 = CreateShape(PxBoxGeometry(2.5, 3, 110));
 	side19->attachShape(*shape19);
@@ -284,8 +281,8 @@ RigidBodySystem::RigidBodySystem(PxPhysics* gPhysics, PxScene* gScene)
 
 	PxRigidStatic* side20;
 	side20 = gPhysics->createRigidStatic(PxTransform(0, 1, -100));
-	PxShape* shape20 = CreateShape(PxBoxGeometry(2.5, 3,62.5));
-	PxTransform p18(0,1,-110);
+	PxShape* shape20 = CreateShape(PxBoxGeometry(2.5, 3, 62.5));
+	PxTransform p18(0, 1, -110);
 	p18.q = PxQuat(PxPi / 2, PxVec3(0, 1, 0));
 	side20->setGlobalPose(p18);
 	side20->attachShape(*shape20);
@@ -331,7 +328,7 @@ RigidBodySystem::RigidBodySystem(PxPhysics* gPhysics, PxScene* gScene)
 	side23->attachShape(*shape23);
 	gScene->addActor(*side23);
 	side22->setName("side1");
-	
+
 	RenderItem* item23;
 	item23 = new RenderItem(shape23, side23, { 0.9373,0.7216,0,627 });
 	item23->release();
@@ -413,23 +410,26 @@ RigidBodySystem::RigidBodySystem(PxPhysics* gPhysics, PxScene* gScene)
 	PxTransform* pWhite = new PxTransform(0, 0.1, 60);
 	posicionesSaque.push_back(pWhite);
 	whiteStrip->transform = pWhite;
-	whiteStrip->shape = CreateShape(physx::PxBoxGeometry(50,0.2,0.1));
+	whiteStrip->shape = CreateShape(physx::PxBoxGeometry(50, 0.2, 0.1));
 	RegisterRenderItem(whiteStrip);
 
-	bolas.push_back(new Bola("AMARILLO", Vector3(20, 0, pWhite->p.z ), gPhysics, gScene));
+#pragma endregion
+
+#pragma region Creacion de las bolas
+	bolas.push_back(new Bola("AMARILLO", Vector3(20, 0, pWhite->p.z), gPhysics, gScene));
 	bolas.push_back(new Bola("MARRON", Vector3(0, 0, pWhite->p.z), gPhysics, gScene));
 	bolas.push_back(new Bola("VERDE", Vector3(-20, 1, pWhite->p.z), gPhysics, gScene));
-	
-	
+
+
 	blanca = new Bola("BLANCO", Vector3(0, 1, pWhite->p.z + 10), gPhysics, gScene);
-	
+
 	bolas.push_back(blanca);
 
 
 	bolas.push_back(new Bola("AZUL", Vector3(0, 0, 0), gPhysics, gScene));
 	bolas.push_back(new Bola("ROSA", Vector3(0, 0, -pWhite->p.z), gPhysics, gScene));
-	
-	
+
+
 	bolas.push_back(new Bola("ROJO", Vector3(0, 0, -pWhite->p.z - 2), gPhysics, gScene));
 
 	bolas.push_back(new Bola("ROJO", Vector3(1, 0, -pWhite->p.z - 4), gPhysics, gScene));
@@ -452,10 +452,12 @@ RigidBodySystem::RigidBodySystem(PxPhysics* gPhysics, PxScene* gScene)
 	bolas.push_back(new Bola("ROJO", Vector3(4, 0, -pWhite->p.z - 10), gPhysics, gScene));
 
 
-	
+
+
 	bolas.push_back(new Bola("NEGRO", Vector3(0, 0, -pWhite->p.z - 25), gPhysics, gScene));
+#pragma endregion
 
-
+#pragma region Elementos adicionales de la mesa
 	RenderItem* cajaSaqueBottom = new RenderItem();
 	cajaSaqueBottom->color = Vector4(1, 1, 1, 1);
 	PxTransform* pBottom = new PxTransform(0, 0.1, 80);
@@ -492,21 +494,17 @@ RigidBodySystem::RigidBodySystem(PxPhysics* gPhysics, PxScene* gScene)
 	fondoMesa->transform = fondo;
 	fondoMesa->shape = CreateShape(physx::PxBoxGeometry(60, 0.2, 110));
 	RegisterRenderItem(fondoMesa);
-	palo = new Palo(Vector3(blanca->getPos().x, 1, blanca->getPos().z + 10), gPhysics, gScene,blanca,8);
+#pragma endregion
 
-	torbellino  = new GeneradorTorbellino(Vector3(0, 1, 0), 5, Vector3(0, 0, 0), Vector3(30, 30, 30) * 3);
+#pragma region Palo
+	palo = new Palo(Vector3(blanca->getPos().x, 1, blanca->getPos().z + 10), gPhysics, gScene, blanca, 8);
+#pragma endregion
 
+#pragma region Generadores de fuerza
+	torbellino = new GeneradorTorbellino(Vector3(0, 1, 0), 5, Vector3(0, 0, 0), Vector3(30, 30, 30) * 3);
 	explosion = new ExplosionGenerator(1000, 300, Vector3{ 0,20,0 }, 900, 100);
-	cout << "Puntuacion: " << puntuacion << endl;
-	cout << "Tiros restantes: " << tirosPosibles << endl;
-
-
-
-	////Solo funciona si: la posici�n pasada a Anchored - la pasada a la part�cula tiene todas sus coordenadas > 0.
-	aF = new AnchoredSpringFG(500, 10, Vector3(0, 50, 0));
-	Particle* particle = new Particle(physx::PxTransform(-0, 100, -100), Vector3(0, 0, 0), Vector3(0, 0, 0), 10, 200, DAMPING, false);
-
-	pfR->addRegistry(new GravityForceGenerator(Vector3(0, -9.8, 0)), particle);
+	aF = new AnchoredSpringFG(500, 10, Vector3(0, 70, 0));
+	Particle* particle = new Particle(physx::PxTransform(-0, 100, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), 10, 200, DAMPING, false);
 	particle->getRenderItem()->color = Vector4(1, 0.5, 0, 1);
 	particle->getRenderItem()->shape = CreateShape(physx::PxSphereGeometry(2));
 	particle->getRenderItem()->transform = particle->getPos();
@@ -514,9 +512,15 @@ RigidBodySystem::RigidBodySystem(PxPhysics* gPhysics, PxScene* gScene)
 
 	pfR->addRegistry(aF, particle);
 	particles.push_back(particle);
+#pragma endregion
+
+
+	cout << "Puntuacion: " << puntuacion << endl;
+	cout << "Tiros restantes: " << tirosPosibles << endl;
+
 }
 
-RigidBodySystem::~RigidBodySystem() 
+RigidBodySystem::~RigidBodySystem()
 {
 
 	for (auto it : generators)
@@ -524,7 +528,7 @@ RigidBodySystem::~RigidBodySystem()
 		delete it;
 	}
 
-	for(auto it :generatorsParticles)
+	for (auto it : generatorsParticles)
 	{
 		delete it;
 	}
@@ -532,11 +536,11 @@ RigidBodySystem::~RigidBodySystem()
 	{
 		delete it;
 	}
-	for(auto it : fireworks)
+	for (auto it : fireworks)
 	{
 		delete it;
 	}
-	
+
 	for (auto it : bolas)
 	{
 		delete it;
@@ -545,14 +549,14 @@ RigidBodySystem::~RigidBodySystem()
 }
 
 
-void RigidBodySystem::addDynamicObject(float Cestatico, float Cdinamico, float Elastico, PxVec3 inertiaT, Vector3 dimension,Vector4 color, Vector3 transform, Vector3 velocity, Vector3 angularvelocity, float density, int timetoleave)
+void RigidBodySystem::addDynamicObject(float Cestatico, float Cdinamico, float Elastico, PxVec3 inertiaT, Vector3 dimension, Vector4 color, Vector3 transform, Vector3 velocity, Vector3 angularvelocity, float density, int timetoleave)
 {
 	RigidBody solid;
 	PxRigidDynamic* new_solid;
-	
-	PxMaterial* gMaterial =  _gPhysics->createMaterial(Cestatico, Cdinamico, Elastico);
 
-	
+	PxMaterial* gMaterial = _gPhysics->createMaterial(Cestatico, Cdinamico, Elastico);
+
+
 	new_solid = _gPhysics->createRigidDynamic(PxTransform(transform));
 
 	new_solid->setLinearVelocity(velocity);
@@ -581,12 +585,8 @@ void RigidBodySystem::addDynamicObject(float Cestatico, float Cdinamico, float E
 void RigidBodySystem::update(double t)
 {
 
-
-
-	
-	
-
-	if(tirosPosibles == 0 && !end)
+#pragma region Condiciones de victoria / derrota
+	if (tirosPosibles == 0 && !end)
 	{
 		cout << "HAS PERDIDO" << endl;
 		for (auto it : bolas)
@@ -601,7 +601,7 @@ void RigidBodySystem::update(double t)
 		}
 		end = true;
 	}
-	else if(bolasRojas == 0 && !end)
+	else if (bolasRojas == 0 && !end)
 	{
 		cout << "HAS GANADO" << endl;
 		cout << "Con una puntuacion de: " << puntuacion << endl;
@@ -618,60 +618,61 @@ void RigidBodySystem::update(double t)
 		end = true;
 	}
 
-	
+#pragma endregion
 
-	
-	if(golpeado)
+#pragma region Actualizacion del tiempo tras golpeo
+
+	if (golpeado)
 		segundosTrasGolpe += t;
-	
-	float antiguaPuntuacion = puntuacion;
-	
+#pragma endregion
+
+#pragma region Actualizacion del estado de las bolas
 	auto it2 = bolas.begin();
-	while (it2!=bolas.end() && !end)
+	while (it2 != bolas.end() && !end)
 	{
-		
-			if ((*it2)->getBola()->getGlobalPose().p.y < -5)
+
+		if ((*it2)->getBola()->getGlobalPose().p.y < -5)
+		{
+			if ((*it2)->getColor() != "BLANCO")
 			{
-				if ((*it2)->getColor() != "BLANCO")
+				refreshConsole();
+				if (aF->getMul())puntuacion += (*it2)->getPuntuacion() * 2;
+				else puntuacion += (*it2)->getPuntuacion();
+				cout << "Puntuacion: " << puntuacion << endl;
+				cout << "Tiros restantes: " << tirosPosibles << endl;
+				refreshConsole();
+				onScoring();
+
+				if ((*it2)->getColor() != "ROJO")
 				{
-					refreshConsole();
-					if (aF->getMul())puntuacion += (*it2)->getPuntuacion() * 2;
-					else puntuacion += (*it2)->getPuntuacion();
-
-					cout << "Puntuacion: " << puntuacion << endl;
-					cout << "Tiros restantes: " << tirosPosibles << endl;
-					refreshConsole();
-					onScoring();
-
-					if ((*it2)->getColor() != "ROJO")
-					{
-						(*it2)->returnToInitialPlace();
-						++it2;
-					}
-					else
-					{
-						delete* it2;
-						it2 = bolas.erase(it2);
-						bolasRojas--;
-
-						
-					}
+					(*it2)->returnToInitialPlace();
+					++it2;
 				}
 				else
 				{
-					cout << "HAS PERDIDO" << endl;
+					delete* it2;
+					it2 = bolas.erase(it2);
+					bolasRojas--;
+
 				}
 			}
 			else
 			{
-				it2++;
+				cout << "HAS PERDIDO" << endl;
 			}
-		
-		
+		}
+		else
+		{
+			it2++;
+		}
+
+
 	}
 
-	
-	if (segundosTrasGolpe > 10 )
+#pragma endregion
+
+#pragma region Condicion de parada de las bolas / comprobacion de existencia de falta
+	if (segundosTrasGolpe > 10)
 	{
 		for (auto it = bolas.begin(); it != bolas.end(); it++)
 		{
@@ -692,12 +693,13 @@ void RigidBodySystem::update(double t)
 
 		}
 	}
+#pragma endregion
 
+#pragma region Actualizacion geneadores
 
-	
-	for(auto it = generators.begin(); it != generators.end();)
+	for (auto it = generators.begin(); it != generators.end();)
 	{
-		if((*it)->finished())
+		if ((*it)->finished())
 		{
 			it = generators.erase(it);
 		}
@@ -712,8 +714,10 @@ void RigidBodySystem::update(double t)
 	{
 		Fx->update(t);
 	}
-	
-	//Quitar luego
+
+#pragma endregion
+
+#pragma region Actualizamos solidos (P5)
 	for (auto it = solids.begin(); it != solids.end(); )
 	{
 		it->timeAlive += t;
@@ -732,6 +736,9 @@ void RigidBodySystem::update(double t)
 		}
 	}
 
+#pragma endregion
+
+#pragma region Actualizamos particulas
 	auto it = particles.begin();
 
 	while (it != particles.end())
@@ -781,31 +788,34 @@ void RigidBodySystem::update(double t)
 		ai = aux;
 	}
 
-	pfR->updateForces(t);
+#pragma endregion
 
+#pragma region Actualizamos multimaps
+	pfR->updateForces(t);
 	rFR->updateForces(t);
+
+#pragma endregion
 
 }
 
 void RigidBodySystem::addGenerator(Particle* p, int nParticles, float frecuency)
 {
-	SolidGenerator* gen = new SolidGenerator(p, nParticles, frecuency, this,true,0);
+	SolidGenerator* gen = new SolidGenerator(p, nParticles, frecuency, this, true, 0);
 	generators.push_back(gen);
 }
 
 void RigidBodySystem::addGenerator2(Particle* p, int nParticles, float frecuency)
 {
-	SolidGenerator* gen = new SolidGenerator(p, nParticles, frecuency, this, false,1);
+	SolidGenerator* gen = new SolidGenerator(p, nParticles, frecuency, this, false, 1);
 	generators.push_back(gen);
 }
 
 
 void RigidBodySystem::addGeneratorCharge(int nParticles, float frecuency)
 {
-	/*physx::PxTransform pT(palo->getPos()->p.x, 89.0057, 19.4672);*/
+
 	if (FxCreated)
 	{
-		//Fx->updateFrecuency(Fx->getFrecuency() + frecuency);
 		Fx->moreParticles(nParticles);
 	}
 	else
@@ -817,16 +827,16 @@ void RigidBodySystem::addGeneratorCharge(int nParticles, float frecuency)
 		particle = new Particle(*palo->getPos(), Vector3(0, 0, 0), Vector3(0, 0, 0), masa, liveTime, DAMPING, false);
 
 
-		SolidGenerator* gen = new SolidGenerator(particle, nParticles, frecuency, this, false,0);
+		SolidGenerator* gen = new SolidGenerator(particle, nParticles, frecuency, this, false, 0);
 		Fx = gen;
 		FxCreated = true;
 	}
-	
+
 }
 void RigidBodySystem::allowTorbellino()
 {
 	fG.push_back(torbellino);
-	for(auto it : solids)
+	for (auto it : solids)
 	{
 		rFR->addRegistry(torbellino, it);
 	}
@@ -834,7 +844,7 @@ void RigidBodySystem::allowTorbellino()
 
 void RigidBodySystem::ExplotaTodo()
 {
-	if(!explotado)
+	if (!explotado)
 	{
 		explotado = true;
 		for (auto it : bolas)
@@ -852,12 +862,12 @@ void RigidBodySystem::ExplotaTodo()
 	else
 	{
 		explotado = false;
-		
+
 		rFR->deleteForceRegistry(explosion);
-		
+
 	}
 
-	
+
 }
 void RigidBodySystem::denyTorbellino()
 {
@@ -893,7 +903,7 @@ void RigidBodySystem::configuraCamara()
 		GetCamera()->setTransform(&PxTransform(0, 200, 0));
 		break;
 	case 4:
-		GetCamera()->setDir(&PxTransform(-0.998871,  -0.0464056,  -0.0101474));
+		GetCamera()->setDir(&PxTransform(-0.998871, -0.0464056, -0.0101474));
 		GetCamera()->setTransform(&PxTransform(97.6517, 26.6167, -1.18714));
 		break;
 	case 5:
@@ -901,7 +911,7 @@ void RigidBodySystem::configuraCamara()
 		GetCamera()->setTransform(&PxTransform(-0.759642, 12.7665, -111.752));
 		break;
 
-	
+
 	default:
 		break;
 	}
@@ -912,9 +922,9 @@ void RigidBodySystem::moveBlanca(const Direcciones& dir)
 {
 	switch (dir)
 	{
-	case Direcciones::UP :
+	case Direcciones::UP:
 	{
-		if(blanca->getPos().z > posicionesSaque[0]->p.z)
+		if (blanca->getPos().z > posicionesSaque[0]->p.z)
 		{
 			blanca->setPos(blanca->getPos() + Vector3(0, 0, -1));
 			rotatePalo();
@@ -922,7 +932,7 @@ void RigidBodySystem::moveBlanca(const Direcciones& dir)
 
 		break;
 	}
-	case Direcciones::DOWN : 
+	case Direcciones::DOWN:
 	{
 		if (blanca->getPos().z < posicionesSaque[1]->p.z)
 		{
@@ -967,7 +977,7 @@ void RigidBodySystem::revientaPelota()
 	{
 		puntuacionAntesGolpe = puntuacion;
 		golpeado = true;
-		FuerzaInstantanea(blanca, Vector3(cos(palo->getAngles()), 0, sin(palo->getAngles())) * holdValue * - 30);
+		FuerzaInstantanea(blanca, Vector3(cos(palo->getAngles()), 0, sin(palo->getAngles())) * holdValue * -30);
 		blanca->setDisparada();
 		puedeDisparar = false;
 		firstMove = false;
@@ -976,30 +986,29 @@ void RigidBodySystem::revientaPelota()
 
 void RigidBodySystem::rotatePalo()
 {
-	 palo->updateBlanca(); 
-	 palo->rotateAroundBola(); 
+	palo->updateBlanca();
+	palo->rotateAroundBola();
 }
 
 void RigidBodySystem::setHoldValue(float newValue)
-{  
-	if(lastHoldValue + 10 < holdValue)
+{
+	if (lastHoldValue + 10 < holdValue)
 	{
 
 		addGeneratorCharge(1000, 0);
 		lastHoldValue = holdValue;
 	}
-	holdValue = newValue; 
+	holdValue = newValue;
 }
 
 void RigidBodySystem::onScoring()
 {
-	//pS->shootFirework(250, 0.2, 2, 1,Vector3(0, -9.8, 0),false);
-		Firework* firework;
-		firework = new Firework(PxTransform(0,0,0),Vector3(0,1,0) * 250, Vector3(0, -9.8, 0), 1, 2, DAMPING, 100, 1000, false);
-		firework->getRenderItem()->color = Vector4(1, 0.5, 0, 1);
-		firework->getRenderItem()->shape = CreateShape(physx::PxSphereGeometry(0.2));
-		firework->getRenderItem()->transform = firework->getPos();
-		RegisterRenderItem(firework->getRenderItem());
-		fireworks.push_back(firework);
-	
+	Firework* firework;
+	firework = new Firework(PxTransform(0, 0, 0), Vector3(0, 1, 0) * 250, Vector3(0, -9.8, 0), 1, 2, DAMPING, 100, 1000, false);
+	firework->getRenderItem()->color = Vector4(1, 0.5, 0, 1);
+	firework->getRenderItem()->shape = CreateShape(physx::PxSphereGeometry(0.2));
+	firework->getRenderItem()->transform = firework->getPos();
+	RegisterRenderItem(firework->getRenderItem());
+	fireworks.push_back(firework);
+
 }

@@ -98,7 +98,6 @@ public:
 	virtual ~RigidBodySystem();
 	void addDynamicObject(float Cestatico, float Cdinamico, float Elastico, PxVec3 inertiaT, Vector3 dimension,
 		Vector4 color, Vector3 transform, Vector3 velocity, Vector3 angularvelocity, float density, int timetoleave);
-	void addStaticObject();
 	void update(double t);
 
 
@@ -128,7 +127,7 @@ public:
 	void onScoring();
 
 	void ExplotaTodo();
-	void DesexplotadTodo();
+
 	
 };
 
