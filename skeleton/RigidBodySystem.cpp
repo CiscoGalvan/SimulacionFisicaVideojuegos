@@ -8,8 +8,9 @@ RigidBodySystem::RigidBodySystem(PxPhysics* gPhysics, PxScene* gScene)
 	
 	
 	rFR = new RigidForceRegistry();
-	
+
 	pfR = new ParticleForceRegistry();
+
 
 	//Tablero principal
 	PxRigidStatic* table;
@@ -451,7 +452,6 @@ RigidBodySystem::RigidBodySystem(PxPhysics* gPhysics, PxScene* gScene)
 	bolas.push_back(new Bola("ROJO", Vector3(4, 0, -pWhite->p.z - 10), gPhysics, gScene));
 
 
-
 	
 	bolas.push_back(new Bola("NEGRO", Vector3(0, 0, -pWhite->p.z - 25), gPhysics, gScene));
 
@@ -501,7 +501,8 @@ RigidBodySystem::RigidBodySystem(PxPhysics* gPhysics, PxScene* gScene)
 	cout << "Tiros restantes: " << tirosPosibles << endl;
 
 
-	////Solo funciona si: la posición pasada a Anchored - la pasada a la partícula tiene todas sus coordenadas > 0.
+
+	////Solo funciona si: la posiciï¿½n pasada a Anchored - la pasada a la partï¿½cula tiene todas sus coordenadas > 0.
 	aF = new AnchoredSpringFG(500, 10, Vector3(0, 50, 0));
 	Particle* particle = new Particle(physx::PxTransform(-0, 100, -100), Vector3(0, 0, 0), Vector3(0, 0, 0), 10, 200, DAMPING, false);
 
@@ -584,7 +585,8 @@ void RigidBodySystem::update(double t)
 
 	
 	
-	if(tirosPosibles == 4 && !end )
+
+	if(tirosPosibles == 0 && !end)
 	{
 		cout << "HAS PERDIDO" << endl;
 		for (auto it : bolas)
@@ -617,6 +619,7 @@ void RigidBodySystem::update(double t)
 	}
 
 	
+
 	
 	if(golpeado)
 		segundosTrasGolpe += t;
@@ -634,6 +637,7 @@ void RigidBodySystem::update(double t)
 					refreshConsole();
 					if (aF->getMul())puntuacion += (*it2)->getPuntuacion() * 2;
 					else puntuacion += (*it2)->getPuntuacion();
+
 					cout << "Puntuacion: " << puntuacion << endl;
 					cout << "Tiros restantes: " << tirosPosibles << endl;
 					refreshConsole();
@@ -649,6 +653,7 @@ void RigidBodySystem::update(double t)
 						delete* it2;
 						it2 = bolas.erase(it2);
 						bolasRojas--;
+
 						
 					}
 				}
@@ -776,10 +781,8 @@ void RigidBodySystem::update(double t)
 		ai = aux;
 	}
 
-
-
-
 	pfR->updateForces(t);
+
 	rFR->updateForces(t);
 
 }

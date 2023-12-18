@@ -51,10 +51,12 @@ private:
 	SolidGenerator* Fx;
 	RigidForceRegistry* rFR;
 
+
 	list<ForceGenerator*>fG;
 
 
 	AnchoredSpringFG* aF;
+
 	list<Particle*> particles;
 	PxPhysics* _gPhysics;
 	PxScene* _gScene;
@@ -71,7 +73,6 @@ private:
 
 	bool end = false;
 
-
 	float segundosTrasGolpe = 0;
 	bool golpeado = false;
 	float lastHoldValue = 0;
@@ -87,7 +88,9 @@ private:
 	float puntuacionTrasGolpe = 0;
 	bool explotado = false;
 
+
 	int bolasRojas = 15;
+
 
 public:
 
