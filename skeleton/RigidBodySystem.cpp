@@ -585,6 +585,15 @@ void RigidBodySystem::addDynamicObject(float Cestatico, float Cdinamico, float E
 void RigidBodySystem::update(double t)
 {
 
+
+
+#pragma region Actualizamos multimaps
+	pfR->updateForces(t);
+	rFR->updateForces(t);
+
+#pragma endregion
+
+
 #pragma region Condiciones de victoria / derrota
 	if (tirosPosibles == 0 && !end)
 	{
@@ -650,6 +659,11 @@ void RigidBodySystem::update(double t)
 				}
 				else
 				{
+
+					explotado = false;
+
+					rFR->deleteForceRegistry(explosion);
+			
 					delete* it2;
 					it2 = bolas.erase(it2);
 					bolasRojas--;
@@ -717,6 +731,9 @@ void RigidBodySystem::update(double t)
 
 #pragma endregion
 
+
+
+
 #pragma region Actualizamos solidos (P5)
 	for (auto it = solids.begin(); it != solids.end(); )
 	{
@@ -737,6 +754,8 @@ void RigidBodySystem::update(double t)
 	}
 
 #pragma endregion
+
+
 
 #pragma region Actualizamos particulas
 	auto it = particles.begin();
@@ -790,11 +809,6 @@ void RigidBodySystem::update(double t)
 
 #pragma endregion
 
-#pragma region Actualizamos multimaps
-	pfR->updateForces(t);
-	rFR->updateForces(t);
-
-#pragma endregion
 
 }
 
@@ -1012,3 +1026,5 @@ void RigidBodySystem::onScoring()
 	fireworks.push_back(firework);
 
 }
+
+bool RigidBodySystem::poderDisparar() { return puedeDisparar; }

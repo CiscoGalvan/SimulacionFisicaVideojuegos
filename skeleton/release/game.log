@@ -1,0 +1,105 @@
+﻿  RigidBodySystem.cpp
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\common\PhysX-3.4\PxShared\include\task\PxTask.h(329,1): warning C5220: "physx::PxLightCpuTask::mRefCount": un miembro de datos no estático con un tipo calificado volátil ya no implica
+           que los constructores de copia/movimiento generados por el compilador y los operadores de asignación de copia o movimiento no sean triviales
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\common\PhysX-3.4\PxShared\include\task\PxTask.h(326,19): message : vea la declaración de 'physx::PxLightCpuTask::mRefCount'
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\SolidGenerator.h(39,1): warning C4625: 'SolidGenerator': el constructor de copia se definió implícitamente como eliminado
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\SolidGenerator.h(39,1): warning C4626: 'SolidGenerator': el operador de asignaciones se definió implícitamente como eliminado
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\ForceGenerator.h(13,61): warning C4458: la declaración de 'duration' oculta el miembro de clase
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\ForceGenerator.h(10,9): message : vea la declaración de 'ForceGenerator::duration'
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\ForceGenerator.h(13,61): warning C4100: 'duration': parámetro formal sin referencia
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\ForceGenerator.h(13,47): warning C4100: 'solid': parámetro formal sin referencia
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\ForceGenerator.h(14,47): warning C4458: la declaración de 'duration' oculta el miembro de clase
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\ForceGenerator.h(10,9): message : vea la declaración de 'ForceGenerator::duration'
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\ForceGenerator.h(14,47): warning C4100: 'duration': parámetro formal sin referencia
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\ForceGenerator.h(14,33): warning C4100: 'solid': parámetro formal sin referencia
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\ParticleDragGenerator.h(20,1): warning C4266: 'void ForceGenerator::updateForce(Bola *,double)': no hay una invalidación disponible para la función miembro virtual desde la base 'ForceGenerator'; la función está oculta
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\ForceGenerator.h(14,15): message : vea la declaración de 'ForceGenerator::updateForce'
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\ForceGenerator.h(5,7): message : vea la declaración de 'ForceGenerator'
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\ParticleDragGenerator.h(11,61): warning C4458: la declaración de 'duration' oculta el miembro de clase
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\ForceGenerator.h(10,9): message : vea la declaración de 'ForceGenerator::duration'
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\ParticleDragGenerator.h(11,61): warning C4100: 'duration': parámetro formal sin referencia
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\ParticleDragGenerator.h(11,47): warning C4100: 'solid': parámetro formal sin referencia
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\FuerzaInstantanea.h(15,1): warning C4266: 'void ForceGenerator::updateForce(Bola *,double)': no hay una invalidación disponible para la función miembro virtual desde la base 'ForceGenerator'; la función está oculta
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\ForceGenerator.h(14,15): message : vea la declaración de 'ForceGenerator::updateForce'
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\ForceGenerator.h(5,7): message : vea la declaración de 'ForceGenerator'
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\FuerzaInstantanea.h(14,39): warning C4100: 'dt': parámetro formal sin referencia
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\FuerzaInstantanea.h(14,29): warning C4100: 'p': parámetro formal sin referencia
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\ParticleGenerator.h(37,1): warning C4625: 'ParticleGenerator': el constructor de copia se definió implícitamente como eliminado
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\ParticleGenerator.h(37,1): warning C4626: 'ParticleGenerator': el operador de asignaciones se definió implícitamente como eliminado
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\GaussianGenerator.h(14,1): warning C4625: 'GaussianGenerator': el constructor de copia se definió implícitamente como eliminado
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\GaussianGenerator.h(14,1): warning C4626: 'GaussianGenerator': el operador de asignaciones se definió implícitamente como eliminado
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\ExplosionGenerator.h(24,1): warning C4266: 'void ForceGenerator::updateForce(Bola *,double)': no hay una invalidación disponible para la función miembro virtual desde la base 'ForceGenerator'; la función está oculta
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\ForceGenerator.h(14,15): message : vea la declaración de 'ForceGenerator::updateForce'
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\ForceGenerator.h(5,7): message : vea la declaración de 'ForceGenerator'
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\ExplosionGenerator.h(7,91): warning C5038: miembro de datos "ExplosionGenerator::timeConstant" se inicializará después de miembro de datos "ExplosionGenerator::position"
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\ExplosionGenerator.h(7,130): warning C5038: miembro de datos "ExplosionGenerator::velocity" se inicializará después de miembro de datos "ExplosionGenerator::radius"
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\SpringForceGenerator.h(15,1): warning C4266: 'void ForceGenerator::updateForce(Bola *,double)': no hay una invalidación disponible para la función miembro virtual desde la base 'ForceGenerator'; la función está oculta
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\ForceGenerator.h(14,15): message : vea la declaración de 'ForceGenerator::updateForce'
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\ForceGenerator.h(5,7): message : vea la declaración de 'ForceGenerator'
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\SpringForceGenerator.h(15,1): warning C4266: 'void ForceGenerator::updateForce(physx::PxRigidBody *,double)': no hay una invalidación disponible para la función miembro virtual desde la base 'ForceGenerator'; la función está oculta
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\ForceGenerator.h(13,15): message : vea la declaración de 'ForceGenerator::updateForce'
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\ForceGenerator.h(5,7): message : vea la declaración de 'ForceGenerator'
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\AnchoredSpringFG.h(15,1): warning C4266: 'void ForceGenerator::updateForce(Bola *,double)': no hay una invalidación disponible para la función miembro virtual desde la base 'ForceGenerator'; la función está oculta
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\ForceGenerator.h(14,15): message : vea la declaración de 'ForceGenerator::updateForce'
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\ForceGenerator.h(5,7): message : vea la declaración de 'ForceGenerator'
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\AnchoredSpringFG.h(15,1): warning C4266: 'void ForceGenerator::updateForce(physx::PxRigidBody *,double)': no hay una invalidación disponible para la función miembro virtual desde la base 'ForceGenerator'; la función está oculta
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\ForceGenerator.h(13,15): message : vea la declaración de 'ForceGenerator::updateForce'
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\ForceGenerator.h(5,7): message : vea la declaración de 'ForceGenerator'
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\GravityForceGenerator.h(12,1): warning C4266: 'void ForceGenerator::updateForce(Bola *,double)': no hay una invalidación disponible para la función miembro virtual desde la base 'ForceGenerator'; la función está oculta
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\ForceGenerator.h(14,15): message : vea la declaración de 'ForceGenerator::updateForce'
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\ForceGenerator.h(5,7): message : vea la declaración de 'ForceGenerator'
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\GravityForceGenerator.h(12,1): warning C4266: 'void ForceGenerator::updateForce(physx::PxRigidBody *,double)': no hay una invalidación disponible para la función miembro virtual desde la base 'ForceGenerator'; la función está oculta
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\ForceGenerator.h(13,15): message : vea la declaración de 'ForceGenerator::updateForce'
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\ForceGenerator.h(5,7): message : vea la declaración de 'ForceGenerator'
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\RigidBodySystem.cpp(908,41): warning C4238: se ha utilizado una extensión no estándar: valor-R de clase utilizado como valor L
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\RigidBodySystem.cpp(909,35): warning C4238: se ha utilizado una extensión no estándar: valor-R de clase utilizado como valor L
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\RigidBodySystem.cpp(912,41): warning C4238: se ha utilizado una extensión no estándar: valor-R de clase utilizado como valor L
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\RigidBodySystem.cpp(913,35): warning C4238: se ha utilizado una extensión no estándar: valor-R de clase utilizado como valor L
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\RigidBodySystem.cpp(916,35): warning C4238: se ha utilizado una extensión no estándar: valor-R de clase utilizado como valor L
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\RigidBodySystem.cpp(917,41): warning C4238: se ha utilizado una extensión no estándar: valor-R de clase utilizado como valor L
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\RigidBodySystem.cpp(920,35): warning C4238: se ha utilizado una extensión no estándar: valor-R de clase utilizado como valor L
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\RigidBodySystem.cpp(921,41): warning C4238: se ha utilizado una extensión no estándar: valor-R de clase utilizado como valor L
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\RigidBodySystem.cpp(924,35): warning C4238: se ha utilizado una extensión no estándar: valor-R de clase utilizado como valor L
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\RigidBodySystem.cpp(925,41): warning C4238: se ha utilizado una extensión no estándar: valor-R de clase utilizado como valor L
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\xthreads.h(44,30): warning C5264: "_Mtx_internal_imp_alignment": no se usa la variable '"onst"
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\Bola.h(12,13): warning C5264: "CDINAMICO": no se usa la variable '"onst"
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\Palo.h(17,13): warning C5264: "CDINAMICO_PALO": no se usa la variable '"onst"
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\Bola.h(11,13): warning C5264: "CESTATICO": no se usa la variable '"onst"
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\Palo.h(16,13): warning C5264: "CESTATICO_PALO": no se usa la variable '"onst"
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\xthreads.h(45,30): warning C5264: "_Cnd_internal_imp_size": no se usa la variable '"onst"
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\xthreads.h(43,30): warning C5264: "_Mtx_internal_imp_size": no se usa la variable '"onst"
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\common\PhysX-3.4\PxShared\include\foundation\PxMath.h(60,20): warning C5264: "physx::PxTwoPi": no se usa la variable '"onst"
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\common\PhysX-3.4\PhysX_3.4\Include\PxSpatialIndex.h(47,35): warning C5264: "physx::PX_SPATIAL_INDEX_INVALID_ITEM_ID": no se usa la variable '"onst"
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\common\PhysX-3.4\PxShared\include\foundation\PxMath.h(63,20): warning C5264: "physx::PxPiDivTwo": no se usa la variable '"onst"
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\common\PhysX-3.4\PxShared\include\foundation\PxMath.h(61,20): warning C5264: "physx::PxInvPi": no se usa la variable '"onst"
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\common\PhysX-3.4\PhysX_3.4\Include\PxClient.h(60,25): warning C5264: "physx::PX_MAX_CLIENTS": no se usa la variable '"onst"
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\common\PhysX-3.4\PxShared\include\foundation\PxMath.h(62,20): warning C5264: "physx::PxInvTwoPi": no se usa la variable '"onst"
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\common\PhysX-3.4\PxShared\include\foundation\PxMath.h(64,20): warning C5264: "physx::PxPiDivFour": no se usa la variable '"onst"
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\common\PhysX-3.4\PxShared\include\foundation\PxMath.h(59,20): warning C5264: "physx::PxHalfPi": no se usa la variable '"onst"
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\Palo.h(18,13): warning C5264: "CELASTICO_PALO": no se usa la variable '"onst"
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\xthreads.h(46,30): warning C5264: "_Cnd_internal_imp_alignment": no se usa la variable '"onst"
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\Bola.h(13,13): warning C5264: "CELASTICO": no se usa la variable '"onst"
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\utility(127,39): warning C5264: "std::allocator_arg": no se usa la variable '"onst"
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\typeinfo(28,27): warning C5264: "std::_Small_object_num_ptrs": no se usa la variable '"onst"
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\random(65,35): warning C5264: "std::_Two32": no se usa la variable '"onst"
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\random(63,35): warning C5264: "std::_Pi": no se usa la variable '"onst"
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\system_error(44,28): warning C5264: "std::is_error_code_enum_v<int>": no se usa la variable '"onst"
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\system_error(44,28): warning C5264: "std::is_error_code_enum_v<std::error_condition>": no se usa la variable '"onst"
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\system_error(44,28): warning C5264: "std::is_error_code_enum_v<std::error_code>": no se usa la variable '"onst"
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\system_error(44,28): warning C5264: "std::is_error_code_enum_v<const char*>": no se usa la variable '"onst"
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\xtr1common(179,28): warning C5264: "std::is_integral_v<double>": no se usa la variable '"onst"
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\xtr1common(179,28): warning C5264: "std::is_integral_v<float>": no se usa la variable '"onst"
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\xmemory(121,30): warning C5264: "std::_Big_allocation_sentinel": no se usa la variable '"onst"
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\algorithm(117,27): warning C5264: "std::_ISORT_MAX": no se usa la variable '"onst"
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\xutility(812,28): warning C5264: "std::?$_Is_iterator_v@$RBAAB@$$Yvoid_t@std@@$std:?$iterator_traits@$RBAAB@:iterator_category:<char*,void>": no se usa la variable '"onst"
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\xutility(812,28): warning C5264: "std::?$_Is_iterator_v@$RBAAB@$$Yvoid_t@std@@$std:?$iterator_traits@$RBAAB@:iterator_category:<wchar_t*,void>": no se usa la variable '"onst"
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\vector(2281,27): warning C5264: "std::_VBITS": no se usa la variable '"onst"
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\random(66,35): warning C5264: "std::_Two31": no se usa la variable '"onst"
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\xtr1common(196,28): warning C5264: "std::is_arithmetic_v<double>": no se usa la variable '"onst"
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\random(72,27): warning C5264: "std::_Nwords": no se usa la variable '"onst"
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\random(64,35): warning C5264: "std::_Exp1": no se usa la variable '"onst"
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\type_traits(667,28): warning C5264: "std::is_move_constructible_v<std::default_delete<std::_Facet_base>>": no se usa la variable '"onst"
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\utility(114,45): warning C5264: "std::piecewise_construct": no se usa la variable '"onst"
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\tuple(132,31): warning C5264: "std::ignore": no se usa la variable '"onst"
+E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\skeleton\Bola.h(15,13): warning C5264: "RADIUS": no se usa la variable '"onst"
+  game.vcxproj -> E:\TERCER AÑO\FÍSICA\SimulacionFisicaVideojuegos\Proyecto\bin\game.exe

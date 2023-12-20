@@ -122,7 +122,7 @@ public:
 	PxTransform* getPaloT() { return palo->getPos(); }
 
 	inline void refreshConsole() { for (int i = 0; i < 27; i++)cout << "\n"; }
-	inline bool poderDisparar() { return puedeDisparar; }
+	bool poderDisparar();
 	inline bool firstMoved() { return firstMove; }
 	void onScoring();
 
