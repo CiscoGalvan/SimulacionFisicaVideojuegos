@@ -503,7 +503,7 @@ RigidBodySystem::RigidBodySystem(PxPhysics* gPhysics, PxScene* gScene)
 #pragma region Generadores de fuerza
 	torbellino = new GeneradorTorbellino(Vector3(0, 1, 0), 5, Vector3(0, 0, 0), Vector3(30, 30, 30) * 3);
 	explosion = new ExplosionGenerator(1000, 300, Vector3{ 0,20,0 }, 900, 100);
-	aF = new AnchoredSpringFG(500, 10, Vector3(0, 70, 0));
+	aF = new AnchoredSpringFG(5, 10, Vector3(0, 70, 0));
 	Particle* particle = new Particle(physx::PxTransform(-0, 100, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), 10, 200, DAMPING, false);
 	particle->getRenderItem()->color = Vector4(1, 0.5, 0, 1);
 	particle->getRenderItem()->shape = CreateShape(physx::PxSphereGeometry(2));
