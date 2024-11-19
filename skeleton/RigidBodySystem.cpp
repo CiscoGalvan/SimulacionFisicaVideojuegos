@@ -503,15 +503,8 @@ RigidBodySystem::RigidBodySystem(PxPhysics* gPhysics, PxScene* gScene)
 #pragma region Generadores de fuerza
 	torbellino = new GeneradorTorbellino(Vector3(0, 1, 0), 5, Vector3(0, 0, 0), Vector3(30, 30, 30) * 3);
 	explosion = new ExplosionGenerator(1000, 300, Vector3{ 0,20,0 }, 900, 100);
-	aF = new AnchoredSpringFG(5, 10, Vector3(0, 70, 0));
-	Particle* particle = new Particle(physx::PxTransform(-0, 100, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), 10, 200, DAMPING, false);
-	particle->getRenderItem()->color = Vector4(1, 0.5, 0, 1);
-	particle->getRenderItem()->shape = CreateShape(physx::PxSphereGeometry(2));
-	particle->getRenderItem()->transform = particle->getPos();
-	RegisterRenderItem(particle->getRenderItem());
+	
 
-	pfR->addRegistry(aF, particle);
-	particles.push_back(particle);
 #pragma endregion
 
 
@@ -645,8 +638,8 @@ void RigidBodySystem::update(double t)
 			if ((*it2)->getColor() != "BLANCO")
 			{
 				refreshConsole();
-				if (aF->getMul())puntuacion += (*it2)->getPuntuacion() * 2;
-				else puntuacion += (*it2)->getPuntuacion();
+				
+				puntuacion += (*it2)->getPuntuacion();
 				cout << "Puntuacion: " << puntuacion << endl;
 				cout << "Tiros restantes: " << tirosPosibles << endl;
 				refreshConsole();

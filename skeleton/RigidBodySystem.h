@@ -54,9 +54,6 @@ private:
 
 	list<ForceGenerator*>fG;
 
-
-	AnchoredSpringFG* aF;
-
 	list<Particle*> particles;
 	PxPhysics* _gPhysics;
 	PxScene* _gScene;
